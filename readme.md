@@ -4,7 +4,7 @@ This is the repository for my personal portfolio website, showcasing my skills, 
 
 ## Live Demo
 
-**(Link to your deployed portfolio website - e.g., `https://yourusername.github.io/portfolio/` or your custom domain)**
+**(Link to your deployed portfolio website - e.g., `https://github.com/rehmanpranto/Portfolio/settings/pages`**
 
 ## Overview
 
