@@ -1,262 +1,518 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohammad Mahibur Rahman - Portfolio</title>
+    <title>Mohammad Mahibur Rahman - Data Insights Explorer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" xintegrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBgzWl+yP5RwpYeNciloe+IH95xaIJ0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
-            /* Primary text color remains dark */
-            color: #403d39;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        html {
-            scroll-behavior: smooth;
-        }
-        /* Subtle progress bar */
-        .progress-bar-container {
-            background-color: #e0dbd1; /* Lighter beige */
-            border-radius: 2px;
-            overflow: hidden;
-            height: 6px;
-        }
-        .progress-bar {
-            background-color: #403d39; /* Dark accent */
-            height: 100%;
-            transition: width 0.5s ease-in-out;
-        }
-        /* Custom properties for palette */
+        /* Custom properties for light mode */
         :root {
-          /* Backgrounds */
-          --bg-main-start: #ccc5b9;
-          --bg-main-end: #b8b1a9; /* Slightly darker end for body gradient */
-          --bg-card: #f8f7f4; /* Off-white/very light beige for cards */
-          --bg-header-footer-start: #252422;
-          --bg-header-footer-end: #403d39; /* Slightly lighter end for header/footer */
-          --bg-experience-card: #e0dbd1; /* Beige for experience cards */
-
-          /* Text */
-          --text-primary: #403d39;
-          --text-secondary: #6b4f4b; /* Muted brown */
-          --text-on-dark: #f8f7f4;
-          --text-on-gradient-btn: #f8f7f4;
-
-          /* Accents & Borders */
-          --accent-start: #403d39; /* Button gradient start */
-          --accent-end: #252422;   /* Button gradient end */
-          --accent-hover-start: #252422; /* Darker hover */
-          --accent-hover-end: #1a1917;
-          --border-color: #b8b1a9;
+            --bg-primary: #f3f4f6; /* Light Gray - Main background */
+            --bg-secondary: #e5e7eb; /* Slightly darker Gray - Secondary background (cards, sections) */
+            --text-primary: #111827; /* Very Dark Gray/Black - Main text */
+            --text-secondary: #4b5563; /* Dark Gray - Secondary text */
+            --accent-primary: #3b82f6; /* Blue - Primary accent */
+            --accent-secondary: #6366f1; /* Indigo - Secondary accent */
+            --accent-hover: #2563eb; /* Darker Blue - Accent hover */
+            --card-bg: #ffffff; /* White - Card backgrounds */
+            --border-color: #d1d5db; /* Light Gray - Borders */
         }
+        /* Custom properties for dark mode */
+        .dark {
+            --bg-primary: #111827; /* Very Dark Blue/Black - Main background */
+            --bg-secondary: #1f2937; /* Dark Blue/Gray - Secondary background */
+            --text-primary: #f9fafb; /* Off-White - Main text */
+            --text-secondary: #d1d5db; /* Light Gray - Secondary text */
+            --accent-primary: #6366f1; /* Indigo - Primary accent */
+            --accent-secondary: #a855f7; /* Purple - Secondary accent */
+            --accent-hover: #8b5cf6; /* Lighter Purple - Accent hover */
+            --card-bg: #374151; /* Dark Gray - Card backgrounds */
+            --border-color: #4b5563; /* Medium Gray - Borders */
+        }
+        /* Apply theme variables */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        header, #mobile-menu {
+            background-color: var(--bg-secondary); /* Consistent header background */
+        }
+        .dark header, .dark #mobile-menu {
+            background-color: var(--bg-secondary); /* Dark mode header background */
+        }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .bg-primary { background-color: var(--bg-primary); }
+        .bg-secondary { background-color: var(--bg-secondary); }
+        .bg-card { background-color: var(--card-bg); }
+        .border-border-color { border-color: var(--border-color); }
+        .text-accent-primary { color: var(--accent-primary); }
+        .text-accent-secondary { color: var(--accent-secondary); }
+        .hover\:text-accent-primary:hover { color: var(--accent-primary); }
+        .dark .hover\:text-accent-secondary:hover { color: var(--accent-secondary); }
+
+
         /* Gradient button style */
         .btn-gradient {
             display: inline-block;
-            /* Apply gradient using Tailwind classes directly if preferred, or define here */
-            background-image: linear-gradient(to right, var(--accent-start), var(--accent-end));
-            color: var(--text-on-gradient-btn);
-            font-weight: 500;
-            padding: 0.75rem 1.5rem;
-            border-radius: 4px;
+            background: linear-gradient(to right, var(--accent-primary), var(--accent-secondary));
+            color: #ffffff; /* White text for better contrast on gradient */
+            font-weight: 600; /* Slightly bolder */
+            padding: 0.85rem 1.75rem; /* A bit more padding */
+            border-radius: 0.5rem; /* Rounded corners */
             text-decoration: none;
-            transition: all 0.3s ease; /* Smooth transition for hover */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06); /* Subtle shadow */
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow */
         }
         .btn-gradient:hover {
-             /* Darken gradient on hover */
-            background-image: linear-gradient(to right, var(--accent-hover-start), var(--accent-hover-end));
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Slightly larger shadow on hover */
+            background: linear-gradient(to right, var(--accent-hover), var(--accent-secondary)); /* Use hover color */
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         /* Minimalist social icon style */
         .social-icon {
             color: var(--text-secondary);
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.2s ease;
+            font-size: 1.5rem; /* Larger icons */
         }
         .social-icon:hover {
-            color: var(--accent-end); /* Use dark end color for hover */
+            color: var(--accent-primary);
+            transform: scale(1.15); /* Slightly more zoom */
         }
         /* Section padding */
         section {
-            padding-top: 4rem;
-            padding-bottom: 4rem;
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
         @media (min-width: 768px) {
             section {
-                padding-top: 6rem;
-                padding-bottom: 6rem;
+                padding-top: 7rem;
+                padding-bottom: 7rem;
             }
+        }
+        /* Animated Underline */
+        .underline-animated {
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit; /* Inherit color from parent */
+            padding-bottom: 2px; /* Space for underline */
+        }
+        .underline-animated::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent-primary);
+            transition: width 0.3s ease;
+        }
+        .underline-animated:hover::after {
+            width: 100%;
+        }
+        /* Skill Pill */
+        .skill-pill {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 1rem; /* More rounded pills */
+            margin-right: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            display: inline-flex; /* Align icon and text */
+            align-items: center;
+        }
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            background-color: var(--accent-primary);
+            color: #fff;
+        }
+        .dark .skill-pill {
+            background-color: #4a5568; /* Darker pill background */
+        }
+        .dark .skill-pill:hover {
+            background-color: var(--accent-primary); /* Consistent hover for dark mode */
+        }
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem; /* Increased padding for larger dots */
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem; /* More spacing */
+        }
+        .timeline-item::before { /* The dot */
+            content: '';
+            position: absolute;
+            top: 0.25rem; /* Adjust vertical alignment */
+            left: -0.9rem; /* Position relative to the line */
+            width: 0.75rem; /* Larger dot */
+            height: 0.75rem;
+            border-radius: 50%;
+            background-color: var(--accent-primary);
+            border: 3px solid var(--bg-primary); /* Border to make it pop */
+            z-index: 1;
+        }
+        .dark .timeline-item::before {
+            border-color: var(--bg-secondary);
+        }
+        .timeline::before { /* The line */
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -0.125rem; /* Align with the center of the dot */
+            width: 3px; /* Thicker line */
+            background-color: var(--border-color);
+            border-radius: 2px;
+        }
+        .timeline-content {
+            background-color: var(--card-bg);
+            padding: 1.5rem; /* More padding */
+            border-radius: 0.75rem; /* More rounded */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07); /* Softer, more spread shadow */
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        .dark .timeline-content {
+            box-shadow: 0 4px 15px rgba(0,0,0, 0.2); /* Adjusted shadow for dark */
+        }
+        .dark .timeline-content:hover {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: none;
+            cursor: pointer;
+            font-size: 1.35rem; /* Larger icon */
+            transition: color 0.3s ease, transform 0.2s ease;
+            outline: none;
+            padding: 0.5rem; /* Add some padding for easier click */
+        }
+        .dark .dark-mode-toggle {
+            color: var(--text-secondary);
+        }
+        .dark-mode-toggle:hover {
+            color: var(--accent-primary);
+            transform: rotate(15deg);
+        }
+        /* Hero Animation */
+        .hero-title, .hero-subtitle, .hero-button {
+            opacity: 0;
+            animation-fill-mode: forwards; /* Keep styles from last keyframe */
+            animation-duration: 0.8s; /* Slightly faster */
+            animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother ease */
+        }
+        .hero-title {
+            transform: translateY(30px);
+            animation-name: fadeInUp;
+            animation-delay: 0.3s;
+        }
+        .hero-subtitle {
+            transform: translateY(20px);
+            animation-name: fadeInUp;
+            animation-delay: 0.5s;
+        }
+        .hero-button {
+            animation-name: fadeIn;
+            animation-delay: 0.7s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        /* Section title styling */
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700; /* Bold */
+            text-align: center;
+            margin-bottom: 2.5rem; /* 40px */
+            color: var(--accent-primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .dark .section-title {
+            color: var(--accent-secondary);
+        }
+        .section-title::after { /* Underline effect for section titles */
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 60px; /* Width of the underline */
+            height: 3px;
+            background-color: var(--accent-primary);
+            border-radius: 2px;
+        }
+        .dark .section-title::after {
+            background-color: var(--accent-secondary);
+        }
+
+        /* Profile image styling */
+        .profile-image {
+            border: 5px solid var(--accent-primary);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .dark .profile-image {
+            border-color: var(--accent-secondary);
+            box-shadow: 0 0 20px rgba(255,255,255,0.05);
         }
     </style>
 </head>
-<body class="bg-gradient-to-b from-[var(--bg-main-start)] to-[var(--bg-main-end)] text-[var(--text-primary)]">
+<body class="bg-primary text-primary">
 
-    <header class="bg-gradient-to-r from-[var(--bg-header-footer-start)] to-[var(--bg-header-footer-end)] text-[var(--text-on-dark)] shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <div class="text-xl font-semibold">
-                <a href="#">Portfolio</a>
+    <header class="shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-accent-primary dark:text-accent-secondary">
+                <a href="#" class="hover:opacity-80 transition-opacity">Portfolio</a>
             </div>
-            <div class="hidden md:flex space-x-5">
-                <a href="#home" class="hover:text-[#ccc5b9] transition duration-200">Home</a>
-                <a href="#about" class="hover:text-[#ccc5b9] transition duration-200">About</a>
-                <a href="#skills" class="hover:text-[#ccc5b9] transition duration-200">Skills</a>
-                <a href="#portfolio" class="hover:text-[#ccc5b9] transition duration-200">Experience</a>
-                <a href="#contact" class="hover:text-[#ccc5b9] transition duration-200">Contact</a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Home</a>
+                <a href="#about" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">About</a>
+                <a href="#skills" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Skills</a>
+                <a href="#projects" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Projects</a>
+                <a href="#contact" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Contact</a>
+                <button id="dark-mode-toggle" class="dark-mode-toggle focus:outline-none">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
             </div>
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                <button id="mobile-menu-button" class="focus:outline-none text-primary dark:text-secondary">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-gradient-to-r from-[var(--bg-header-footer-start)] to-[var(--bg-header-footer-end)] px-6 pb-3 space-y-1">
-             <a href="#home" class="block py-1 hover:text-[#ccc5b9] transition duration-200">Home</a>
-             <a href="#about" class="block py-1 hover:text-[#ccc5b9] transition duration-200">About</a>
-             <a href="#skills" class="block py-1 hover:text-[#ccc5b9] transition duration-200">Skills</a>
-             <a href="#portfolio" class="block py-1 hover:text-[#ccc5b9] transition duration-200">Experience</a>
-             <a href="#contact" class="block py-1 hover:text-[#ccc5b9] transition duration-200">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2 border-t border-border-color">
+             <a href="#home" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Home</a>
+             <a href="#about" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">About</a>
+             <a href="#skills" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Skills</a>
+             <a href="#projects" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Projects</a>
+             <a href="#contact" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Contact</a>
+             <button id="mobile-dark-mode-toggle" class="dark-mode-toggle focus:outline-none block py-2 text-left w-full">
+                <i id="mobile-theme-icon" class="fa-solid fa-moon mr-2"></i>Switch Theme
+            </button>
         </div>
     </header>
 
     <main class="container mx-auto px-6">
 
-        <section id="home" class="text-center">
-             <h1 class="text-4xl md:text-5xl font-bold mb-3 text-[var(--accent-start)]">Mohammad Mahibur Rahman</h1>
-             <p class="text-lg md:text-xl text-[var(--text-primary)] mb-8">MIS Major, Finance Minor. Focused on Data Management, Business Analysis, and Tech.</p>
-             <a href="#portfolio" class="btn-gradient">View My Experience</a>
+        <section id="home" class="text-center py-20 md:py-32 min-h-screen flex flex-col justify-center items-center">
+             <h1 class="hero-title text-5xl md:text-7xl font-extrabold mb-5">
+                <span class="text-primary dark:text-text-primary">Mohammad Mahibur Rahman</span>
+             </h1>
+             <p class="hero-subtitle text-xl md:text-2xl text-secondary dark:text-text-secondary mb-10 max-w-2xl">
+                Data Analyst & MIS Enthusiast | Transforming Data into Actionable Insights & Strategic Decisions.
+             </p>
+             <a href="#projects" class="hero-button btn-gradient">Explore My Work <i class="fa-solid fa-arrow-right-long ml-2"></i></a>
         </section>
 
-        <section id="about" class="bg-[var(--bg-card)] rounded-md shadow-lg"> <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-[var(--accent-start)]">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center md:space-x-10">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <img src="ChatGPT Image Apr 14, 2025, 11_25_59 PM.png" alt="Mohammad Mahibur Rahman" class="rounded-full mx-auto shadow-md w-48 h-48 md:w-60 md:h-60 object-cover">
+        <section id="about" class="py-16 bg-secondary dark:bg-bg-secondary rounded-xl shadow-xl border border-border-color">
+            <h2 class="section-title">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 px-4 md:px-12">
+                <div class="md:w-1/3 flex justify-center">
+                    <!-- USER: Replace 'profile.jpg' with your actual image path -->
+                    <img src="IMG_9839.JPG" alt="Mohammad Mahibur Rahman" class="profile-image rounded-full w-56 h-56 md:w-72 md:h-72 object-cover">
                 </div>
-                <div class="md:w-2/3 text-center md:text-left space-y-4">
-                    <p class="text-base md:text-lg leading-relaxed">
-                        Welcome! I'm an MIS major with a Finance minor based in Dhaka, Bangladesh, eager to excel in data analysis. I'm currently pursuing my Bachelor's degree at Independent University, Bangladesh (expected graduation Dec 2025) and hold a Diploma in International Business from Hogeschool van Arnhem en Nijmegen (HAN).
+                <div class="md:w-2/3 text-center md:text-left space-y-5 text-secondary dark:text-text-secondary">
+                    <p class="text-lg md:text-xl leading-relaxed">
+                        Hello! I'm Mohammad Mahibur Rahman, an MIS major with a strong passion for Finance, currently based in the dynamic city of Dhaka, Bangladesh. My core drive is to uncover hidden narratives within data and leverage technology to forge informed, impactful business strategies.
                     </p>
-                    <p class="text-base md:text-lg leading-relaxed">
-                        With experience in data analysis and sales roles, I am focused on data management, business analysis, and technology. I am multilingual (English, Bangla, Dutch), globally experienced, and committed to delivering authentic, high-quality results.
+                    <p class="text-lg md:text-xl leading-relaxed">
+                        As a Bachelor's candidate at Independent University, Bangladesh (IUB), with an expected graduation in December 2025, and holding a Diploma in International Business from HAN University of Applied Sciences (Netherlands), I've cultivated a robust foundation in both business acumen and advanced analytical methodologies.
                     </p>
-                    <p class="text-base md:text-lg leading-relaxed">
-                        I enjoy leveraging data to find insights and solutions. Feel free to explore my skills and experience below, and get in touch!
+                    <p class="text-lg md:text-xl leading-relaxed">
+                        My professional journey through data analysis and sales roles has sharpened my expertise in data management, comprehensive market research, and persuasive communication. Fluency in English, Bangla, and Dutch enables me to connect and collaborate effectively across diverse global contexts. I am deeply committed to delivering authentic, high-quality, data-driven solutions.
                     </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-[var(--accent-start)]">My Skills</h2>
-            <div class="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="bg-[var(--bg-card)] p-5 rounded-md shadow-md border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-medium">Python</h3>
-                        <span class="text-sm font-medium text-[var(--text-secondary)]">Beginner</span>
-                    </div>
-                    <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 33%;"></div>
-                    </div>
-                </div>
-                <div class="bg-[var(--bg-card)] p-5 rounded-md shadow-md border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-medium">SQL</h3>
-                        <span class="text-sm font-medium text-[var(--text-secondary)]">Beginner</span>
-                    </div>
-                     <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 33%;"></div>
-                    </div>
-                </div>
-                <div class="bg-[var(--bg-card)] p-5 rounded-md shadow-md border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-medium">Excel</h3>
-                        <span class="text-sm font-medium text-[var(--text-secondary)]">Mid</span>
-                    </div>
-                     <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 66%;"></div>
-                    </div>
-                </div>
-                <div class="bg-[var(--bg-card)] p-5 rounded-md shadow-md border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-medium">Power BI</h3>
-                        <span class="text-sm font-medium text-[var(--text-secondary)]">Beginner</span>
-                    </div>
-                     <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 33%;"></div>
-                    </div>
-                </div>
-                <div class="bg-[var(--bg-card)] p-5 rounded-md shadow-md border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-lg font-medium">Tableau</h3>
-                        <span class="text-sm font-medium text-[var(--text-secondary)]">Beginner</span>
-                    </div>
-                     <div class="progress-bar-container">
-                        <div class="progress-bar" style="width: 33%;"></div>
+                    <!-- Download CV Button Added Here -->
+                    <div class="mt-8 text-center md:text-left">
+                        <a href="CV.pdf" download="CV.pdf" class="btn-gradient">
+                            <i class="fa-solid fa-download mr-2"></i> Download My CV
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="bg-[var(--bg-card)] rounded-md shadow-lg">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-12 text-[var(--accent-start)]">My Experience</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-[var(--bg-experience-card)] p-5 rounded-md shadow-sm border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <h3 class="text-lg font-medium mb-1">Sales Specialist</h3>
-                    <p class="text-base font-medium text-[var(--accent-start)] mb-2">Teleclan Solutions</p>
-                    <p class="text-sm text-[var(--text-secondary)] mb-3">April 2023 - September 2023 (6 months) | Dhaka, Bangladesh</p>
-                    <ul class="list-disc list-inside text-sm text-[var(--text-primary)] space-y-1">
-                        <li>Built and maintained strong client relationships.</li>
-                        <li>Presented cash advance solutions and addressed concerns.</li>
-                        <li>Negotiated and closed deals to meet targets.</li>
-                        <li>Maintained accurate records using CRM.</li>
-                    </ul>
+        <section id="skills" class="py-16">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-brands fa-python mr-2"></i> Python for Data Science</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="fa-solid fa-chart-line mr-1"></i>Data Analysis</span>
+                        <span class="skill-pill"><i class="fa-solid fa-table-cells mr-1"></i>Pandas</span>
+                        <span class="skill-pill"><i class="fa-solid fa-calculator mr-1"></i>NumPy</span>
+                        <span class="skill-pill"><i class="fa-solid fa-palette mr-1"></i>Matplotlib</span>
+                        <span class="skill-pill"><i class="fa-solid fa-pen-nib mr-1"></i>Seaborn</span>
+                    </div>
                 </div>
-                <div class="bg-[var(--bg-experience-card)] p-5 rounded-md shadow-sm border border-transparent hover:border-[var(--border-color)] transition-colors duration-200">
-                    <h3 class="text-lg font-medium mb-1">Data Analyst</h3>
-                    <p class="text-base font-medium text-[var(--accent-start)] mb-2">FlippBidd.Inc</p>
-                    <p class="text-sm text-[var(--text-secondary)] mb-3">January 2023 - April 2023 (4 months) | Remote</p>
-                     <ul class="list-disc list-inside text-sm text-[var(--text-primary)] space-y-1">
-                        <li>Conducted market research to identify leads and target demographics.</li>
-                        <li>Used online platforms and databases for lead generation.</li>
-                        <li>Engaged leads via various communication channels.</li>
-                        <li>Maintained accurate lead records using CRM.</li>
-                    </ul>
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-database mr-2"></i> SQL & Databases</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="fa-solid fa-server mr-1"></i>Management</span>
+                        <span class="skill-pill"><i class="fa-solid fa-magnifying-glass-chart mr-1"></i>Querying</span>
+                        <span class="skill-pill"><i class="fa-solid fa-shuffle mr-1"></i>Manipulation</span>
+                        <span class="skill-pill"><i class="fa-solid fa-lightbulb mr-1"></i>Optimization (Basic)</span>
+                    </div>
+                </div>
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-chart-pie mr-2"></i> Data Visualization</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="fa-solid fa-display mr-1"></i>Power BI</span>
+                        <span class="skill-pill"><i class="fa-solid fa-object-group mr-1"></i>Tableau</span>
+                        <span class="skill-pill"><i class="fa-solid fa-file-excel mr-1"></i>Excel Charts</span>
+                        <span class="skill-pill"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Storytelling</span>
+                    </div>
+                </div>
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-file-excel mr-2"></i> Advanced Excel</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="fa-solid fa-broom mr-1"></i>Data Cleaning</span>
+                        <span class="skill-pill"><i class="fa-solid fa-sitemap mr-1"></i>Pivot Tables</span>
+                        <span class="skill-pill"><i class="fa-solid fa-gears mr-1"></i>Automation (VBA)</span>
+                        <span class="skill-pill"><i class="fa-solid fa-bolt mr-1"></i>Power Query</span>
+                    </div>
+                </div>
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-brain mr-2"></i> Analytical Skills</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="fa-solid fa-magnifying-glass mr-1"></i>Market Research</span>
+                        <span class="skill-pill"><i class="fa-solid fa-bullseye mr-1"></i>Business Analysis</span>
+                        <span class="skill-pill"><i class="fa-solid fa-chart-simple mr-1"></i>Statistical Analysis</span>
+                        <span class="skill-pill"><i class="fa-solid  fa-code-branch mr-1"></i>Version Control (Git)</span>
+                    </div>
+                </div>
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
+                    <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-language mr-2"></i> Languages</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-pill"><i class="flag flag-us mr-1"></i>English (Native)</span>
+                        <span class="skill-pill"><i class="flag flag-bd mr-1"></i>Bangla (Native)</span>
+                        <span class="skill-pill"><i class="flag flag-nl mr-1"></i>Dutch (Conversational)</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center mb-8 text-[var(--accent-start)]">Get In Touch</h2>
-            <div class="max-w-xl mx-auto text-center">
-                <p class="text-base md:text-lg mb-8">
-                    I'm actively seeking opportunities in data analysis and related fields. If you have a project, an opportunity, or just want to connect, feel free to reach out!
+        <section id="projects" class="py-16 bg-secondary dark:bg-bg-secondary rounded-xl shadow-xl border border-border-color">
+            <h2 class="section-title">Projects & Experience</h2>
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-xl md:text-2xl text-accent-primary dark:text-accent-secondary mb-2">Sales Specialist & Data Strategist</h3>
+                            <p class="text-lg font-medium text-secondary dark:text-text-secondary mb-1">Teleclan Solutions, Dhaka</p>
+                            <p class="timeline-date">April 2023 - September 2023 (6 months)</p>
+                            <p class="text-secondary dark:text-text-secondary mb-3">
+                                Spearheaded sales initiatives and client relationship management. Leveraged data analysis (Excel, basic CRM analytics) to identify sales trends, optimize lead generation, and report on performance metrics. Contributed to a 15% improvement in lead conversion by providing data-backed insights for sales strategies.
+                            </p>
+                            <ul class="list-disc list-inside text-secondary dark:text-text-secondary space-y-1">
+                                <li>Built and maintained strong client relationships.</li>
+                                <li>Presented cash advance solutions and addressed concerns.</li>
+                                <li>Negotiated and closed deals to meet targets.</li>
+                                <li>Maintained accurate records using CRM and analyzed sales data.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-xl md:text-2xl text-accent-primary dark:text-accent-secondary mb-2">Data Analyst (Lead Generation Focus)</h3>
+                             <p class="text-lg font-medium text-secondary dark:text-text-secondary mb-1">FlippBidd.Inc (Remote)</p>
+                            <p class="timeline-date">January 2023 - April 2023 (4 months)</p>
+                            <p class="text-secondary dark:text-text-secondary mb-3">
+                                Conducted in-depth market research to identify high-potential leads and target demographics for a US-based tech startup. Utilized online databases, social media analytics, and competitor analysis to build a robust lead pipeline.
+                            </p>
+                            <ul class="list-disc list-inside text-secondary dark:text-text-secondary space-y-1">
+                                <li>Employed advanced search techniques on platforms like LinkedIn Sales Navigator.</li>
+                                <li>Analyzed market segments to refine targeting strategies.</li>
+                                <li>Developed reports on lead quality and conversion potential.</li>
+                                <li>Maintained lead data integrity within the CRM system.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3 class="font-semibold text-xl md:text-2xl text-accent-primary dark:text-accent-secondary mb-2">Academic Capstone: Predictive Enrollment Modeling</h3>
+                            <p class="text-lg font-medium text-secondary dark:text-text-secondary mb-1">Independent University, Bangladesh (IUB)</p>
+                            <p class="timeline-date">Fall 2024 - Expected Spring 2025 (Ongoing)</p>
+                            <p class="text-secondary dark:text-text-secondary mb-3">
+                                Developing a predictive model for course enrollment trends at IUB. This ongoing capstone project involves collecting historical enrollment data, performing exploratory data analysis using Python (Pandas, NumPy, Matplotlib/Seaborn), and applying machine learning techniques (e.g., time series analysis, regression) to forecast future demand. The goal is to provide actionable insights for university resource allocation and curriculum development.
+                            </p>
+                            <ul class="list-disc list-inside text-secondary dark:text-text-secondary space-y-1">
+                                <li>Data collection, cleaning, and preprocessing from diverse university sources.</li>
+                                <li>Feature engineering to identify key predictors of enrollment.</li>
+                                <li>Building and evaluating predictive models.</li>
+                                <li>Visualizing findings and model performance using Power BI for stakeholder presentation.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-16">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="max-w-xl mx-auto text-center text-secondary dark:text-text-secondary">
+                <p class="text-lg md:text-xl mb-8">
+                    I'm actively seeking opportunities in data analysis, business intelligence, and related fields. Whether you have a project in mind, an exciting role, or just want to talk data, I'd love to hear from you!
                 </p>
-                <a href="mailto:rehmanpranto@gmail.com" class="btn-gradient mb-8">
-                    Email Me
+                <a href="mailto:rehmanpranto@gmail.com" class="btn-gradient mb-10">
+                    <i class="fa-solid fa-paper-plane mr-2"></i> Send Me an Email
                 </a>
-                <div class="flex justify-center space-x-5">
-                     <a href="https://www.linkedin.com/in/rahmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
-                         <span class="sr-only">LinkedIn</span>
+                <div class="flex justify-center space-x-8">
+                    <a href="https://www.linkedin.com/in/rahmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                        <span class="sr-only">LinkedIn</span>
                     </a>
-                     <a href="https://github.com/rehmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
-                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.201 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"/></svg>
-                         <span class="sr-only">GitHub</span>
-                     </a>
+                    <a href="https://github.com/rehmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                        <span class="sr-only">GitHub</span>
+                    </a>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="bg-gradient-to-r from-[var(--bg-header-footer-start)] to-[var(--bg-header-footer-end)] text-[var(--text-on-dark)] py-6 mt-16 md:mt-24">
-        <div class="container mx-auto px-6 text-center text-sm">
-            <p>&copy; <span id="current-year"></span> Mohammad Mahibur Rahman. All rights reserved.</p>
+    <footer class="bg-secondary dark:bg-bg-primary text-secondary dark:text-text-secondary py-10 mt-16 border-t border-border-color">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm">&copy; <span id="current-year"></span> Mohammad Mahibur Rahman. All Rights Reserved.</p>
+            <p class="mt-2 text-xs">Crafted with <i class="fa-solid fa-heart text-accent-primary dark:text-accent-secondary"></i> and <i class="fa-solid fa-mug-saucer text-accent-primary dark:text-accent-secondary"></i> in Dhaka, Bangladesh.</p>
         </div>
     </footer>
 
@@ -271,16 +527,81 @@
         if (menuButton && mobileMenu) {
             menuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
+                // Optional: Toggle ARIA attribute for accessibility
+                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
+                menuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.setAttribute('aria-hidden', isExpanded);
             });
 
             // Close menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
+            mobileMenu.querySelectorAll('a, button').forEach(item => { // Include button for theme toggle
+                item.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
+                    menuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.setAttribute('aria-hidden', 'true');
                 });
             });
         } else {
             console.error("Mobile menu elements not found.");
+        }
+
+        // Dark Mode Toggle Functionality
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const html = document.documentElement;
+
+        // Function to apply theme
+        function applyTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
+                if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                html.classList.remove('dark');
+                if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
+                if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        // Check local storage or system preference
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('darkMode');
+        let isDarkModeActive;
+
+        if (currentTheme === 'enabled') {
+            isDarkModeActive = true;
+        } else if (currentTheme === 'disabled') {
+            isDarkModeActive = false;
+        } else {
+            isDarkModeActive = prefersDarkScheme.matches;
+        }
+        applyTheme(isDarkModeActive);
+
+        // Listener for system theme changes
+        prefersDarkScheme.addEventListener('change', (e) => {
+            // Only update if no explicit choice was made by user
+            if (!localStorage.getItem('darkMode')) {
+                applyTheme(e.matches);
+            }
+        });
+        
+        // Toggle function
+        function toggleDarkMode() {
+            const isDark = html.classList.contains('dark');
+            applyTheme(!isDark);
+        }
+
+        if (darkModeToggle) {
+            darkModeToggle.addEventListener('click', toggleDarkMode);
+        }
+        if (mobileDarkModeToggle) {
+            // Ensure mobile toggle doesn't close menu immediately IF it's part of the menu items
+            // The current setup closes menu on any button click inside, which is fine for this.
+            mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
         }
     </script>
 
