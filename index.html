@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" xintegrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBgzWl+yP5RwpYeNciloe+IH95xaIJ0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBgzWl+yP5RwpYeNciloe+IH95xaIJ0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         /* Base styles */
         body {
@@ -17,29 +18,33 @@
             -moz-osx-font-smoothing: grayscale;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-        /* Custom properties for light mode */
+        /* Enhanced CSS variables */
         :root {
-            --bg-primary: #f3f4f6; /* Light Gray - Main background */
-            --bg-secondary: #e5e7eb; /* Slightly darker Gray - Secondary background (cards, sections) */
-            --text-primary: #111827; /* Very Dark Gray/Black - Main text */
-            --text-secondary: #4b5563; /* Dark Gray - Secondary text */
-            --accent-primary: #3b82f6; /* Blue - Primary accent */
-            --accent-secondary: #6366f1; /* Indigo - Secondary accent */
-            --accent-hover: #2563eb; /* Darker Blue - Accent hover */
-            --card-bg: #ffffff; /* White - Card backgrounds */
-            --border-color: #d1d5db; /* Light Gray - Borders */
+            --bg-primary: #f3f4f6;
+            --bg-secondary: #e5e7eb;
+            --bg-secondary-rgb: 229, 231, 235;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #6366f1;
+            --accent-hover: #2563eb;
+            --card-bg: #ffffff;
+            --border-color: #d1d5db;
+            --cursor-color: #111827;
         }
         /* Custom properties for dark mode */
         .dark {
-            --bg-primary: #111827; /* Very Dark Blue/Black - Main background */
-            --bg-secondary: #1f2937; /* Dark Blue/Gray - Secondary background */
-            --text-primary: #f9fafb; /* Off-White - Main text */
-            --text-secondary: #d1d5db; /* Light Gray - Secondary text */
-            --accent-primary: #6366f1; /* Indigo - Primary accent */
-            --accent-secondary: #a855f7; /* Purple - Secondary accent */
-            --accent-hover: #8b5cf6; /* Lighter Purple - Accent hover */
-            --card-bg: #374151; /* Dark Gray - Card backgrounds */
-            --border-color: #4b5563; /* Medium Gray - Borders */
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --bg-secondary-rgb: 31, 41, 55;
+            --text-primary: #f9fafb;
+            --text-secondary: #d1d5db;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-hover: #8b5cf6;
+            --card-bg: #374151;
+            --border-color: #4b5563;
+            --cursor-color: #f9fafb;
         }
         /* Apply theme variables */
         body {
@@ -47,10 +52,10 @@
             color: var(--text-primary);
         }
         header, #mobile-menu {
-            background-color: var(--bg-secondary); /* Consistent header background */
+            background-color: var(--bg-secondary);
         }
         .dark header, .dark #mobile-menu {
-            background-color: var(--bg-secondary); /* Dark mode header background */
+            background-color: var(--bg-secondary);
         }
         .text-primary { color: var(--text-primary); }
         .text-secondary { color: var(--text-secondary); }
@@ -77,18 +82,21 @@
         }
         .btn-gradient:hover {
             background: linear-gradient(to right, var(--accent-hover), var(--accent-secondary));
-            transform: translateY(-3px) scale(1.03); /* Added scale */
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
         }
         /* Minimalist social icon style */
         .social-icon {
             color: var(--text-secondary);
             transition: color 0.3s ease, transform 0.2s ease;
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* Default size for social icons */
         }
         .social-icon:hover {
             color: var(--accent-primary);
-            transform: scale(1.2) rotate(5deg); /* Added rotation */
+            transform: scale(1.2) rotate(5deg);
+        }
+        .dark .social-icon:hover { /* Ensure hover color is consistent in dark mode */
+             color: var(--accent-secondary);
         }
         /* Section padding */
         section {
@@ -117,7 +125,7 @@
             width: 0%;
             height: 2px;
             background-color: var(--accent-primary);
-            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .underline-animated:hover::after {
             width: 100%;
@@ -126,38 +134,37 @@
         .skill-pill {
             background-color: var(--bg-secondary);
             color: var(--text-primary);
-            padding: 0.6rem 1.2rem; /* Slightly adjusted padding */
+            padding: 0.6rem 1.2rem;
             border-radius: 1rem;
             margin-right: 0.75rem;
             margin-bottom: 0.75rem;
             font-size: 0.875rem;
             font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Added box-shadow */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             display: inline-flex;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         .skill-pill:hover {
-            transform: translateY(-4px) scale(1.05); /* Enhanced hover */
+            transform: translateY(-4px) scale(1.05);
             background-color: var(--accent-primary);
             color: #fff;
             box-shadow: 0 4px 10px rgba(var(--accent-primary), 0.3);
         }
-        .skill-pill:hover i { /* Animate icon inside skill pill on hover */
+        .skill-pill:hover i {
             transform: rotate(10deg) scale(1.1);
             transition: transform 0.3s ease;
         }
         .skill-pill i {
-            transition: transform 0.3s ease; /* Transition for icon returning to normal */
+            transition: transform 0.3s ease;
         }
-
         .dark .skill-pill {
             background-color: #4a5568;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .dark .skill-pill:hover {
-            background-color: var(--accent-primary);
-            box-shadow: 0 4px 10px rgba(var(--accent-primary), 0.4);
+            background-color: var(--accent-primary); /* Or var(--accent-secondary) for dark mode consistency */
+            box-shadow: 0 4px 10px rgba(var(--accent-primary), 0.4); /* Or var(--accent-secondary) */
         }
         /* Experience Timeline */
         .timeline {
@@ -179,14 +186,14 @@
             background-color: var(--accent-primary);
             border: 3px solid var(--bg-primary);
             z-index: 1;
-            transition: transform 0.3s ease, background-color 0.3s ease; /* Added transition for dot */
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
-        .timeline-item:hover::before { /* Animate timeline dot on hover */
+        .timeline-item:hover::before {
             transform: scale(1.3);
             background-color: var(--accent-hover);
         }
         .dark .timeline-item::before {
-            border-color: var(--bg-secondary);
+            border-color: var(--bg-secondary); /* Contextual border color */
         }
         .timeline::before {
             content: '';
@@ -207,14 +214,14 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .timeline-content:hover {
-            transform: translateY(-7px) translateX(5px); /* Enhanced hover */
+            transform: translateY(-7px) translateX(5px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         .dark .timeline-content {
-            box-shadow: 0 4px 15px rgba(0,0,0, 0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0, 0.2); /* Darker shadow for dark mode */
         }
         .dark .timeline-content:hover {
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Enhanced darker shadow */
         }
         .timeline-date {
             font-size: 0.875rem;
@@ -228,39 +235,43 @@
             color: var(--text-primary);
             border: none;
             cursor: pointer;
-            font-size: 1.35rem;
-            transition: color 0.3s ease, transform 0.3s ease; /* Smoother rotation */
+            font-size: 1.35rem; /* Adjusted for visibility */
+            transition: color 0.3s ease, transform 0.3s ease;
             outline: none;
-            padding: 0.5rem;
+            padding: 0.5rem; /* Maintain padding for click area */
         }
-        .dark .dark-mode-toggle {
-            color: var(--text-secondary);
+        .dark .dark-mode-toggle { /* Icon color in dark mode */
+            color: var(--text-primary);
         }
         .dark-mode-toggle:hover {
-            color: var(--accent-primary);
-            transform: rotate(25deg) scale(1.1); /* Enhanced rotation */
+            color: var(--accent-primary); /* Hover color in light mode */
+            transform: rotate(25deg) scale(1.1);
+        }
+        .dark .dark-mode-toggle:hover { /* Hover color in dark mode */
+            color: var(--accent-secondary);
         }
 
-        /* Hero Animation (Existing) */
-        .hero-title, .hero-subtitle, .hero-button {
+        /* Hero Animations */
+        .hero-title {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s 0.3s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .hero-subtitle, .hero-button {
             opacity: 0;
             animation-fill-mode: forwards;
             animation-duration: 0.8s;
             animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .hero-title {
-            transform: translateY(30px);
-            animation-name: fadeInUp;
-            animation-delay: 0.3s;
-        }
         .hero-subtitle {
             transform: translateY(20px);
             animation-name: fadeInUp;
-            animation-delay: 0.5s;
+            /* Delay adjusted based on typing animation length, assuming ~5-6s for typing animation */
+            animation-delay: 6s;
         }
         .hero-button {
             animation-name: fadeIn;
-            animation-delay: 0.7s;
+            animation-delay: 6.2s;
         }
         @keyframes fadeInUp {
             to {
@@ -273,6 +284,20 @@
                 opacity: 1;
             }
         }
+        /* Typing Cursor CSS */
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background-color: var(--cursor-color);
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+            vertical-align: baseline;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
 
         /* Section title styling */
         .section-title {
@@ -283,12 +308,11 @@
             color: var(--accent-primary);
             position: relative;
             padding-bottom: 0.5rem;
-            /* For scroll animation */
             opacity: 0;
             transform: translateY(20px);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        .section-title.is-visible { /* Class added by JS for scroll animation */
+        .section-title.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -305,9 +329,9 @@
             height: 3px;
             background-color: var(--accent-primary);
             border-radius: 2px;
-            transition: width 0.4s ease; /* Animate underline width on hover (optional) */
+            transition: width 0.4s ease;
         }
-        .section-title:hover::after { /* Optional: Animate underline on title hover */
+        .section-title:hover::after {
              width: 90px;
         }
         .dark .section-title::after {
@@ -318,9 +342,9 @@
         .profile-image {
             border: 5px solid var(--accent-primary);
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            transition: transform 0.4s ease, box-shadow 0.4s ease; /* Added transition */
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .profile-image:hover { /* Hover effect for profile image */
+        .profile-image:hover {
             transform: scale(1.05) rotate(-2deg);
             box-shadow: 0 5px 30px rgba(var(--accent-primary), 0.3);
         }
@@ -332,25 +356,23 @@
              box-shadow: 0 5px 30px rgba(var(--accent-secondary), 0.3);
         }
 
-
         /* Project Card Styling */
         .project-card {
             background-color: var(--card-bg);
             border-radius: 0.75rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
             border: 1px solid var(--border-color);
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             overflow: hidden;
-            /* For scroll animation */
             opacity: 0;
             transform: translateY(30px) scale(0.95);
         }
-        .project-card.is-visible { /* Class added by JS for scroll animation */
+        .project-card.is-visible {
             opacity: 1;
             transform: translateY(0) scale(1);
         }
         .project-card:hover {
-            transform: translateY(-10px) scale(1.03); /* Enhanced hover */
+            transform: translateY(-10px) scale(1.03);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         .dark .project-card {
@@ -365,7 +387,7 @@
             max-height: 250px;
             object-fit: cover;
             border-bottom: 1px solid var(--border-color);
-            transition: transform 0.4s ease; /* Image zoom on card hover */
+            transition: transform 0.4s ease;
         }
         .project-card:hover img {
             transform: scale(1.05);
@@ -398,11 +420,11 @@
         .project-card-links a {
             margin-right: 0.75rem;
             font-weight: 500;
-            transition: opacity 0.2s ease, transform 0.2s ease; /* Added transform */
+            transition: opacity 0.2s ease, transform 0.2s ease;
         }
         .project-card-links a:hover {
             opacity: 0.8;
-            transform: translateY(-2px); /* Button lift on hover */
+            transform: translateY(-2px);
         }
         .btn-outline {
             padding: 0.6rem 1.2rem;
@@ -411,12 +433,12 @@
             color: var(--accent-primary);
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease; /* Added transform */
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
         }
         .btn-outline:hover {
             background-color: var(--accent-primary);
             color: #fff;
-            transform: scale(1.05); /* Button scale on hover */
+            transform: scale(1.05);
         }
         .dark .btn-outline {
             border-color: var(--accent-secondary);
@@ -460,6 +482,12 @@
             transform: translateY(0) scale(1);
         }
 
+        /* Signature style (No longer used, but kept if needed later)
+        .signature-font {
+            font-family: 'Sacramento', cursive;
+            font-size: 1.75rem;
+            font-weight: 500;
+        } */
 
     </style>
 </head>
@@ -467,21 +495,25 @@
 
     <header class="shadow-lg sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-bold text-accent-primary dark:text-accent-secondary">
-                <a href="#" class="hover:opacity-80 transition-opacity">Portfolio</a>
+            <div class="flex items-center space-x-3">
+                <button id="dark-mode-toggle" class="dark-mode-toggle focus:outline-none" aria-label="Toggle theme">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <div class="text-2xl font-bold text-accent-primary dark:text-accent-secondary">
+                    <a href="#" class="hover:opacity-80 transition-opacity">Portfolio</a>
+                </div>
             </div>
+
             <div class="hidden md:flex space-x-6 items-center">
                 <a href="#home" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Home</a>
                 <a href="#about" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">About</a>
                 <a href="#skills" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Skills</a>
                 <a href="#projects" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Projects</a>
                 <a href="#contact" class="underline-animated hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Contact</a>
-                <button id="dark-mode-toggle" class="dark-mode-toggle focus:outline-none">
-                    <i id="theme-icon" class="fa-solid fa-moon"></i>
-                </button>
-            </div>
+                </div>
+
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="focus:outline-none text-primary dark:text-secondary">
+                <button id="mobile-menu-button" class="focus:outline-none text-primary dark:text-secondary" aria-label="Open menu" aria-expanded="false">
                     <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
@@ -492,7 +524,7 @@
               <a href="#skills" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Skills</a>
               <a href="#projects" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Projects</a>
               <a href="#contact" class="block py-2 hover:text-accent-primary dark:hover:text-accent-secondary font-medium">Contact</a>
-              <button id="mobile-dark-mode-toggle" class="dark-mode-toggle focus:outline-none block py-2 text-left w-full">
+              <button id="mobile-dark-mode-toggle" class="dark-mode-toggle focus:outline-none block py-2 text-left w-full" aria-label="Toggle theme mobile">
                 <i id="mobile-theme-icon" class="fa-solid fa-moon mr-2"></i>Switch Theme
             </button>
         </div>
@@ -501,24 +533,22 @@
     <main class="container mx-auto px-6">
 
         <section id="home" class="text-center py-20 md:py-32 min-h-screen flex flex-col justify-center items-center">
-              <h1 class="hero-title text-5xl md:text-7xl font-extrabold mb-5">
-                <span class="text-primary dark:text-text-primary">Mohammad Mahibur Rahman</span>
+              <h1 id="animated-hero-title-container" class="hero-title text-5xl md:text-7xl font-extrabold mb-5">
+                <span id="animated-text" class="text-primary dark:text-text-primary"></span>
+                <span class="typing-cursor"></span>
               </h1>
               <p class="hero-subtitle text-xl md:text-2xl text-secondary dark:text-text-secondary mb-10 max-w-2xl">
-                Data Analyst & MIS Enthusiast | Transforming Data into Actionable Insights & Strategic Decisions.
+                Data Analyst | MIS-Focused Professional | Transforming Raw Data into Strategic Growth.
               </p>
               <a href="#projects" class="hero-button btn-gradient">Explore My Work <i class="fa-solid fa-arrow-right-long ml-2"></i></a>
         </section>
 
         <section id="about" class="py-16 bg-secondary dark:bg-bg-secondary rounded-xl shadow-xl border border-border-color">
-            <!-- Added animate-on-scroll and fade-in-up to section title -->
             <h2 class="section-title animate-on-scroll fade-in-up">About Me</h2>
             <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 px-4 md:px-12">
-                <!-- Added animate-on-scroll and fade-in-left to image container -->
                 <div class="md:w-1/3 flex justify-center animate-on-scroll fade-in-left" data-delay="200">
                     <img src="IMG_9839.JPG" alt="Mohammad Mahibur Rahman" class="profile-image rounded-full w-56 h-56 md:w-72 md:h-72 object-cover">
                 </div>
-                <!-- Added animate-on-scroll and fade-in-right to text container -->
                 <div class="md:w-2/3 text-center md:text-left space-y-5 text-secondary dark:text-text-secondary animate-on-scroll fade-in-right" data-delay="400">
                     <p class="text-lg md:text-xl leading-relaxed">
                         Hello! I'm Mohammad Mahibur Rahman, an MIS major with a strong passion for Finance, currently based in the dynamic city of Dhaka, Bangladesh. My core drive is to uncover hidden narratives within data and leverage technology to forge informed, impactful business strategies.
@@ -539,9 +569,7 @@
         </section>
 
         <section id="skills" class="py-16">
-            <!-- Added animate-on-scroll and fade-in-up to section title -->
             <h2 class="section-title animate-on-scroll fade-in-up">Core Competencies</h2>
-            <!-- Each skill card will be animated by JS based on its .bg-card class within #skills -->
             <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105">
                     <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-brands fa-python mr-2"></i> Python for Data Science</h3>
@@ -571,7 +599,7 @@
                         <span class="skill-pill"><i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Storytelling</span>
                     </div>
                 </div>
-                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105" data-delay="0"> <!-- Stagger delay -->
+                <div class="bg-card dark:bg-card rounded-xl shadow-lg p-6 border border-border-color dark:border-border-color transition duration-300 hover:shadow-2xl hover:scale-105" data-delay="0">
                     <h3 class="text-2xl font-semibold mb-4 text-accent-primary dark:text-accent-secondary"><i class="fa-solid fa-file-excel mr-2"></i> Advanced Excel</h3>
                     <div class="flex flex-wrap">
                         <span class="skill-pill"><i class="fa-solid fa-broom mr-1"></i>Data Cleaning</span>
@@ -601,11 +629,9 @@
         </section>
 
         <section id="projects" class="py-16 bg-secondary dark:bg-bg-secondary rounded-xl shadow-xl border border-border-color">
-            <!-- Added animate-on-scroll and fade-in-up to section title -->
             <h2 class="section-title animate-on-scroll fade-in-up">Projects & Experience</h2>
             <div class="max-w-4xl mx-auto px-4">
                 <div class="timeline">
-                    <!-- Timeline items will be animated by JS -->
                     <div class="timeline-item animate-on-scroll fade-in-up">
                         <div class="timeline-content">
                             <h3 class="font-semibold text-xl md:text-2xl text-accent-primary dark:text-accent-secondary mb-2">Sales Specialist & Data Strategist</h3>
@@ -658,14 +684,12 @@
             </div>
 
             <div class="max-w-5xl mx-auto px-4 mt-16">
-                <!-- Added animate-on-scroll and fade-in-up to section title -->
                 <h3 class="text-2xl md:text-3xl font-semibold text-center text-primary dark:text-text-primary mb-10 relative pb-3 animate-on-scroll fade-in-up">
                     Featured Personal Projects
                     <span class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-accent-primary dark:bg-accent-secondary rounded"></span>
                 </h3>
-                <!-- Project cards will be animated by JS based on their .project-card class -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div class="project-card"> <!-- JS will add .is-visible -->
+                    <div class="project-card">
                         <img src="Screenshot 2025-05-25 at 23-17-13 QuizFlow.png" alt="QuizFlow Project Screenshot" class="w-full" style="max-height:250px;object-fit:cover;">
                         <div class="project-card-content">
                             <h4 class="project-card-title">QuizFlow - Interactive Quiz Platform</h4>
@@ -688,7 +712,7 @@
                         </div>
                     </div>
 
-                    <div class="project-card" data-delay="200"> <!-- JS will add .is-visible -->
+                    <div class="project-card" data-delay="200">
                         <img src="Screenshot 2025-05-25 at 23-25-29 Dhaka Metro Fare Calculator.png" alt="Dhaka Metro Fare Calculator Project Screenshot" class="w-full" style="max-height:250px;object-fit:cover;">
                         <div class="project-card-content">
                             <h4 class="project-card-title">Dhaka Metro Fare Calculator</h4>
@@ -715,35 +739,56 @@
         </section>
 
         <section id="contact" class="py-16">
-            <!-- Added animate-on-scroll and fade-in-up to section title -->
             <h2 class="section-title animate-on-scroll fade-in-up">Let's Connect</h2>
-            <!-- Added animate-on-scroll and scale-up to content -->
             <div class="max-w-xl mx-auto text-center text-secondary dark:text-text-secondary animate-on-scroll scale-up">
                 <p class="text-lg md:text-xl mb-8">
                     I'm actively seeking opportunities in data analysis, business intelligence, and related fields. Whether you have a project in mind, an exciting role, or just want to talk data, I'd love to hear from you!
                 </p>
-                <a href="mailto:rehmanpranto@gmail.com" class="btn-gradient mb-10">
+                <a href="mailto:rehmanpranto@gmail.com" class="btn-gradient mb-6">
                     <i class="fa-solid fa-paper-plane mr-2"></i> Send Me an Email
                 </a>
-                <div class="flex justify-center space-x-8">
-                    <a href="https://www.linkedin.com/in/rahmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                        <span class="sr-only">LinkedIn</span>
+                <div class="flex justify-center space-x-4 mt-4">
+                    <a href="https://www.linkedin.com/in/rahmanpranto/" target="_blank" rel="noopener noreferrer" class="btn-gradient flex items-center px-6 py-3">
+                        <i class="fa-brands fa-linkedin-in mr-2"></i> LinkedIn
                     </a>
-                    <a href="https://github.com/rehmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
-                        <i class="fa-brands fa-github"></i>
-                        <span class="sr-only">GitHub</span>
+                    <a href="https://github.com/rehmanpranto" target="_blank" rel="noopener noreferrer" class="btn-outline flex items-center px-6 py-3">
+                        <i class="fa-brands fa-github mr-2"></i> GitHub
                     </a>
                 </div>
             </div>
         </section>
 
+        <div class="flex justify-end mb-8">
+            <button id="contact-dark-mode-toggle" class="dark-mode-toggle focus:outline-none" aria-label="Toggle theme">
+                <i id="contact-theme-icon" class="fa-solid fa-moon"></i>
+            </button>
+        </div>
     </main>
 
-    <footer class="bg-secondary dark:bg-bg-primary text-secondary dark:text-text-secondary py-10 mt-16 border-t border-border-color">
+    <!-- Add a scroll-to-top button -->
+<button id="scroll-to-top" class="fixed bottom-6 right-6 bg-accent-primary hover:bg-accent-hover text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-50">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+    <footer class="bg-gradient-to-r from-bg-secondary to-card-bg dark:from-bg-primary dark:to-bg-secondary text-secondary dark:text-text-secondary py-8 mt-16 border-t border-border-color">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-sm">&copy; <span id="current-year"></span> Mohammad Mahibur Rahman. All Rights Reserved.</p>
-            <p class="mt-2 text-xs">Crafted with <i class="fa-solid fa-heart text-accent-primary dark:text-accent-secondary"></i> and <i class="fa-solid fa-mug-saucer text-accent-primary dark:text-accent-secondary"></i> in Dhaka, Bangladesh.</p>
+            <div class="mb-4 flex justify-center space-x-8">
+                <a href="https://www.linkedin.com/in/rahmanpranto/" target="_blank" rel="noopener noreferrer" class="social-icon group" title="LinkedIn">
+                    <i class="fa-brands fa-linkedin text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+                <a href="https://github.com/rehmanpranto" target="_blank" rel="noopener noreferrer" class="social-icon group" title="GitHub">
+                    <i class="fa-brands fa-square-github text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="mailto:rehmanpranto@gmail.com" class="social-icon group" title="Email">
+                    <i class="fa-solid fa-envelope text-2xl group-hover:scale-110 transition-transform"></i>
+                    <span class="sr-only">Email</span>
+                </a>
+            </div>
+            <div class="w-32 h-px bg-gradient-to-r from-transparent via-accent-primary to-transparent mx-auto mb-4"></div>
+            <p class="text-sm font-medium">&copy; <span id="current-year"></span> Mohammad Mahibur Rahman. All Rights Reserved.</p>
+            <p class="text-xs mt-2 opacity-75">Crafted with ☕ coffee and ❤️ love by Mahibur Rahman</p>
         </div>
     </footer>
 
@@ -757,16 +802,15 @@
 
         if (menuButton && mobileMenu) {
             menuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const isExpanded = menuButton.getAttribute('aria-expanded') === 'true' || false;
-                menuButton.setAttribute('aria-expanded', !isExpanded);
-                mobileMenu.setAttribute('aria-hidden', isExpanded);
+                const isExpanded = mobileMenu.classList.toggle('hidden');
+                menuButton.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+                mobileMenu.setAttribute('aria-hidden', !isExpanded);
             });
 
             mobileMenu.querySelectorAll('a, button').forEach(item => {
                 item.addEventListener('click', () => {
                     if (!mobileMenu.classList.contains('hidden')) {
-                        if (item.tagName === 'A' || (item.tagName === 'BUTTON' && item.id !== 'mobile-dark-mode-toggle')) {
+                         if (item.tagName === 'A' || (item.tagName === 'BUTTON' && item.id !== 'mobile-dark-mode-toggle')) {
                             mobileMenu.classList.add('hidden');
                             menuButton.setAttribute('aria-expanded', 'false');
                             mobileMenu.setAttribute('aria-hidden', 'true');
@@ -781,8 +825,10 @@
         // Dark Mode Toggle Functionality
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         const mobileDarkModeToggle = document.getElementById('mobile-dark-mode-toggle');
+        const contactDarkModeToggle = document.getElementById('contact-dark-mode-toggle');
         const themeIcon = document.getElementById('theme-icon');
         const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+        const contactThemeIcon = document.getElementById('contact-theme-icon');
         const html = document.documentElement;
 
         function applyTheme(isDark) {
@@ -790,11 +836,13 @@
                 html.classList.add('dark');
                 if(themeIcon) themeIcon.classList.replace('fa-moon', 'fa-sun');
                 if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                if(contactThemeIcon) contactThemeIcon.classList.replace('fa-moon', 'fa-sun');
                 localStorage.setItem('darkMode', 'enabled');
             } else {
                 html.classList.remove('dark');
                 if(themeIcon) themeIcon.classList.replace('fa-sun', 'fa-moon');
                 if(mobileThemeIcon) mobileThemeIcon.classList.replace('fa-sun', 'fa-moon');
+                if(contactThemeIcon) contactThemeIcon.classList.replace('fa-sun', 'fa-moon');
                 localStorage.setItem('darkMode', 'disabled');
             }
         }
@@ -825,6 +873,7 @@
 
         if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
         if (mobileDarkModeToggle) mobileDarkModeToggle.addEventListener('click', toggleDarkMode);
+        if (contactDarkModeToggle) contactDarkModeToggle.addEventListener('click', toggleDarkMode);
 
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -839,13 +888,72 @@
                 }
             });
         });
-
-        // Intersection Observer for scroll animations
+        
+        // Typing Animation for Hero Title & Intersection Observer
         document.addEventListener('DOMContentLoaded', () => {
+            const animatedTextElement = document.getElementById('animated-text');
+            const originalTitle = "Mohammad Mahibur Rahman";
+            const newTitle = "I am a Data Analyst";
+            const typingSpeed = 100;
+            const erasingSpeed = 50;
+            const delayBeforeErase = 2500;
+            const delayBeforeTypingNew = 300;
+            const delayAfterNewTitle = 3000; 
+            const initialDelay = 500;
+
+            function typeText(element, text, speed, callback) {
+                let i = 0;
+                element.innerHTML = '';
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else if (callback) {
+                        document.querySelector('.typing-cursor').style.opacity = '1';
+                        setTimeout(callback, delayAfterNewTitle);
+                    }
+                }
+                type();
+            }
+
+            function eraseText(element, speed, callback) {
+                const text = element.innerHTML;
+                let i = text.length;
+                function erase() {
+                    if (i >= 0) {
+                        element.innerHTML = text.substring(0, i);
+                        i--;
+                        setTimeout(erase, speed);
+                    } else if (callback) {
+                        callback();
+                    }
+                }
+                erase();
+            }
+
+            function startAnimationSequence() {
+                if (animatedTextElement) {
+                    typeText(animatedTextElement, originalTitle, typingSpeed, () => {
+                        setTimeout(() => {
+                            eraseText(animatedTextElement, erasingSpeed, () => {
+                                setTimeout(() => {
+                                    typeText(animatedTextElement, newTitle, typingSpeed, () => {
+                                        // Animation stops here. To loop, call startAnimationSequence() again after a delay.
+                                    });
+                                }, delayBeforeTypingNew);
+                            });
+                        }, delayBeforeErase);
+                    });
+                }
+            }
+            setTimeout(startAnimationSequence, initialDelay);
+
+            // Intersection Observer for scroll animations
             const observerOptions = {
-                root: null, // relative to document viewport
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.1 // 10% of item is visible
+                threshold: 0.1
             };
 
             const observerCallback = (entries, observer) => {
@@ -855,35 +963,63 @@
                         setTimeout(() => {
                             entry.target.classList.add('is-visible');
                         }, delay);
-                        observer.unobserve(entry.target); // Optional: stop observing after animation
+                        observer.unobserve(entry.target);
                     }
                 });
             };
 
-            const observer = new IntersectionObserver(observerCallback, observerOptions);
+            const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
             
-            // Observe elements with .animate-on-scroll class
             document.querySelectorAll('.animate-on-scroll').forEach(el => {
-                observer.observe(el);
+                scrollObserver.observe(el);
             });
-
-            // Observe skill cards specifically (using .bg-card within #skills section)
             document.querySelectorAll('#skills .bg-card').forEach(el => {
-                 observer.observe(el);
+                 scrollObserver.observe(el);
             });
-            
-            // Observe timeline items specifically
             document.querySelectorAll('#projects .timeline-item').forEach(el => {
-                 observer.observe(el);
+                 scrollObserver.observe(el);
             });
-
-            // Observe project cards specifically
             document.querySelectorAll('#projects .project-card').forEach(el => {
-                 observer.observe(el);
+                 scrollObserver.observe(el);
             });
         });
 
-    </script>
+        // Add scroll-to-top functionality and enhanced animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollToTopBtn = document.getElementById('scroll-to-top');
+            let lastScrollY = 0;
 
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                if (currentScrollY < 100) {
+                    scrollToTopBtn.style.opacity = '0';
+                    scrollToTopBtn.style.pointerEvents = 'none';
+                } else {
+                    scrollToTopBtn.style.opacity = '1';
+                    scrollToTopBtn.style.pointerEvents = 'auto';
+                }
+
+                // Enhanced header scroll effect
+                const header = document.querySelector('header');
+                if (currentScrollY > lastScrollY) {
+                    // Scrolling down
+                    header.style.backgroundColor = 'rgba(var(--bg-secondary-rgb), 0.9)';
+                    header.style.backdropFilter = 'blur(10px)';
+                } else {
+                    // Scrolling up
+                    header.style.backgroundColor = 'var(--bg-secondary)';
+                    header.style.backdropFilter = 'none';
+                }
+                lastScrollY = currentScrollY;
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
