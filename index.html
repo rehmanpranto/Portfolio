@@ -71,19 +71,19 @@
         }
         
         .gradient-text {
-            background: linear-gradient(135deg, #2d5a5b 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: #2d5a5b; /* fallback color for better visibility */
+            color: #1f2937; /* Strong dark fallback for light mode */
         }
         
         .dark .gradient-text {
-            background: linear-gradient(135deg, #5f9ea0 0%, #d3d3d3 100%);
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: #5f9ea0; /* fallback color */
+            color: #f9fafb; /* White fallback for dark mode */
         }
         
         .card-hover {
@@ -188,14 +188,16 @@
         
         .navbar-blur {
             backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.95);
             transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1a1a1a;
         }
         
         .dark .navbar-blur {
-            background: rgba(17, 24, 39, 0.85);
+            background: rgba(17, 24, 39, 0.95);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
         }
         
         /* Enhanced Smooth Performance Optimizations */
@@ -216,6 +218,38 @@
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             overflow-x: hidden;
+            color: #1f2937 !important; /* Dark text for light mode */
+        }
+        
+        .dark body {
+            color: #f9fafb !important; /* Light text for dark mode */
+        }
+        
+        /* Ensure all headings have proper contrast */
+        h1, h2, h3, h4, h5, h6 {
+            color: #111827; /* Very dark for light mode */
+        }
+        
+        .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+            color: #f9fafb; /* White for dark mode */
+        }
+        
+        /* Ensure paragraph text has good contrast */
+        p, span, div {
+            color: #374151; /* Medium dark for light mode */
+        }
+        
+        .dark p, .dark span, .dark div {
+            color: #d1d5db; /* Light gray for dark mode */
+        }
+        
+        /* Force high contrast for navigation */
+        .navbar-text {
+            color: #1f2937 !important;
+        }
+        
+        .dark .navbar-text {
+            color: #f9fafb !important;
         }
         
         /* Hardware acceleration for smooth animations */
@@ -366,12 +400,18 @@
         
         /* Ultra smooth text animations */
         .text-flow {
-            background: linear-gradient(45deg, #5f9ea0, #4a4a4a, #5f9ea0);
+            background: linear-gradient(45deg, #2d5a5c, #1a1a1a, #2d5a5c);
             background-size: 300% 300%;
             animation: textFlow 4s ease-in-out infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: #2d5a5c; /* Fallback */
+        }
+        
+        .dark .text-flow {
+            background: linear-gradient(45deg, #5f9ea0, #4a4a4a, #5f9ea0);
+            color: #5f9ea0; /* Fallback for dark mode */
         }
         
         @keyframes textFlow {
@@ -428,37 +468,6 @@
                 box-shadow: 0 0 30px rgba(95, 158, 160, 0.5);
             }
         }
-        
-        /* Enhanced text contrast for better visibility */
-        .text-primary-dark {
-            color: #2d5a5b !important;
-        }
-        
-        .dark .text-primary-dark {
-            color: #5f9ea0 !important;
-        }
-        
-        /* Better contrast for skill tags */
-        .skill-tag {
-            background-color: rgba(45, 90, 91, 0.1);
-            color: #2d5a5b;
-            border: 1px solid rgba(45, 90, 91, 0.2);
-        }
-        
-        .dark .skill-tag {
-            background-color: rgba(95, 158, 160, 0.1);
-            color: #5f9ea0;
-            border: 1px solid rgba(95, 158, 160, 0.2);
-        }
-        
-        /* Better visibility for section headings */
-        .section-heading {
-            color: #1f2937 !important;
-        }
-        
-        .dark .section-heading {
-            color: #f9fafb !important;
-        }
     </style>
     
     <!-- Tailwind Custom Config -->
@@ -493,17 +502,17 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo/Brand -->
                 <div class="flex-shrink-0">
-                    <span class="text-xl font-bold text-gray-800 dark:text-white">MR</span>
+                    <span class="text-xl font-bold text-gray-900 dark:text-white navbar-text">MR</span>
                 </div>
                 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:block">
                     <div class="flex items-baseline space-x-8">
-                        <a href="#home" class="hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target">Home</a>
-                        <a href="#about" class="hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target">About</a>
-                        <a href="#skills" class="hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target">Skills</a>
-                        <a href="#projects" class="hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target">Projects</a>
-                        <a href="#contact" class="hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target">Contact</a>
+                        <a href="#home" class="text-gray-900 dark:text-gray-100 hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target navbar-text">Home</a>
+                        <a href="#about" class="text-gray-900 dark:text-gray-100 hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target navbar-text">About</a>
+                        <a href="#skills" class="text-gray-900 dark:text-gray-100 hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target navbar-text">Skills</a>
+                        <a href="#projects" class="text-gray-900 dark:text-gray-100 hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target navbar-text">Projects</a>
+                        <a href="#contact" class="text-gray-900 dark:text-gray-100 hover:text-primary transition-all duration-300 fluid-bounce nav-highlight touch-target navbar-text">Contact</a>
                     </div>
                 </div>
                 
@@ -525,11 +534,11 @@
         <!-- Mobile menu -->
         <div id="mobile-menu" class="hidden md:hidden mobile-nav slide-in-left">
             <div class="px-4 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Home</a>
-                <a href="#about" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">About</a>
-                <a href="#skills" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Skills</a>
-                <a href="#projects" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Projects</a>
-                <a href="#contact" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Contact</a>
+                <a href="#home" class="block px-3 py-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center navbar-text">Home</a>
+                <a href="#about" class="block px-3 py-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center navbar-text">About</a>
+                <a href="#skills" class="block px-3 py-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center navbar-text">Skills</a>
+                <a href="#projects" class="block px-3 py-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center navbar-text">Projects</a>
+                <a href="#contact" class="block px-3 py-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center navbar-text">Contact</a>
             </div>
         </div>
     </nav>
@@ -603,7 +612,7 @@
         
         <div class="max-w-7xl mx-auto mobile-padding px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 sm:mb-16 scroll-reveal" data-aos="fade-up">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 text-reveal">About Me</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">About Me</h2>
                 <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in px-4">
                     Passionate about uncovering insights that drive business growth
                 </p>
@@ -647,10 +656,10 @@
                         </div>
                         
                         <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-4 pt-4 sm:pt-6">
-                            <span class="px-3 sm:px-4 py-2 skill-tag rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Data Analysis</span>
-                            <span class="px-3 sm:px-4 py-2 skill-tag rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">MIS</span>
-                            <span class="px-3 sm:px-4 py-2 skill-tag rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Finance</span>
-                            <span class="px-3 sm:px-4 py-2 skill-tag rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Business Strategy</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Data Analysis</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">MIS</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Finance</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Business Strategy</span>
                         </div>
                         
                         <div class="pt-4 sm:pt-6 mobile-center">
@@ -686,7 +695,7 @@
         
         <div class="max-w-7xl mx-auto mobile-padding px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-12 sm:mb-16 scroll-reveal" data-aos="fade-up">
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 text-reveal">Skills & Expertise</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Skills & Expertise</h2>
                 <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in px-4">
                     Technical skills and tools I use to bring data to life
                 </p>
@@ -699,7 +708,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
                             <i class="fas fa-chart-line text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-white">Data Analysis</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Data Analysis</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
                                 <span class="text-xs sm:text-sm font-medium">Excel/Google Sheets</span>
@@ -734,7 +743,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
                             <i class="fas fa-chart-pie text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-white">Visualization</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Visualization</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
                                 <span class="text-xs sm:text-sm font-medium">Power BI</span>
@@ -769,7 +778,7 @@
                         <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
                             <i class="fas fa-briefcase text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-4 text-gray-800 dark:text-white">Business</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Business</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
                                 <span class="text-xs sm:text-sm font-medium">Financial Analysis</span>
@@ -816,7 +825,7 @@
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4 text-reveal">Featured Projects</h2>
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Featured Projects</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
                     A showcase of my data analysis and business intelligence projects
                 </p>
@@ -897,7 +906,7 @@
             </div>
             
             <div class="text-center mt-12 scroll-reveal" data-aos="fade-up" data-aos-delay="300">
-                <a href="#" class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center transition-all duration-300 hover-glow magnetic">
+                <a href="#" class="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center transition-all duration-300 hover-glow magnetic">
                     <i class="fas fa-plus mr-2 rotate-in"></i> View All Projects
                 </a>
             </div>
@@ -908,7 +917,7 @@
     <section id="experience" class="py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">Experience & Education</h2>
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Experience & Education</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     My journey through education and professional experiences
                 </p>
@@ -998,7 +1007,7 @@
     <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white mb-4">Let's Connect</h2>
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Let's Connect</h2>
                 <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
                     Ready to transform your data into actionable insights? Let's discuss how we can work together.
                 </p>
@@ -1475,7 +1484,7 @@
         // Performance Optimization: Intersection Observer for smooth animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+                       rootMargin: '0px 0px -50px 0px'
         };
 
         const animationObserver = new IntersectionObserver((entries) => {
