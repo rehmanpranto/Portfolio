@@ -1,56 +1,1425 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammad Mahibur Rahman - Data Insights Explorer</title>
-    <!-- Styles and scripts omitted for brevity, retained from your original file -->
+    <meta name="description" content="Data Analyst & MIS Professional specializing in transforming raw data into strategic business insights">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom Styles -->
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: #5f9ea0;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(95, 158, 160, 0.4);
+        }
+        
+        .skill-bar {
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #5f9ea0 0%, #4a4a4a 100%);
+            border-radius: 4px;
+            transition: width 2s ease-in-out;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .navbar-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        
+        .dark .navbar-blur {
+            background: rgba(17, 24, 39, 0.8);
+        }
+        
+        .project-card {
+            background: linear-gradient(145deg, #f3f4f6 0%, #e5e7eb 100%);
+            border: 1px solid #d1d5db;
+        }
+        
+        .dark .project-card {
+            background: linear-gradient(145deg, #374151 0%, #1f2937 100%);
+            border: 1px solid #4b5563;
+        }
+        
+        .glow {
+            box-shadow: 0 0 20px rgba(95, 158, 160, 0.3);
+        }
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        /* Advanced Animations */
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        
+        .scale-in {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        
+        .rotate-in {
+            animation: rotateIn 0.8s ease-out forwards;
+        }
+        
+        .bounce-in {
+            animation: bounceIn 1s ease-out forwards;
+        }
+        
+        .pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+        
+        .wave-animation {
+            animation: wave 2s ease-in-out infinite;
+        }
+        
+        .text-reveal {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .text-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
+            animation: textReveal 1.5s ease-out forwards;
+        }
+        
+        .morphing-bg {
+            background: linear-gradient(-45deg, #5f9ea0, #4a4a4a, #d3d3d3, #708090);
+            background-size: 400% 400%;
+            animation: morphBackground 15s ease infinite;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #5f9ea0;
+            white-space: nowrap;
+            animation: typewriter 3s steps(40, end), blinkCursor 0.75s step-end infinite;
+        }
+        
+        .floating-icon {
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+        
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+        
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(10deg);
+        }
+        
+        .parallax-scroll {
+            transform: translateZ(0);
+            transition: transform 0.3s ease-out;
+        }
+        
+        .elastic-bounce {
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .elastic-bounce:hover {
+            transform: scale(1.1);
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(45deg, #5f9ea0, #4a4a4a);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: white;
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .dark .gradient-border::before {
+            background: #1f2937;
+        }
+        
+        /* Keyframes */
+        @keyframes slideInLeft {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes scaleIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes rotateIn {
+            from { transform: rotate(-180deg); opacity: 0; }
+            to { transform: rotate(0); opacity: 1; }
+        }
+        
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(95, 158, 160, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(95, 158, 160, 0.8); }
+        }
+        
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes textReveal {
+            0% { width: 100%; }
+            100% { width: 0%; }
+        }
+        
+        @keyframes morphBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        
+        @keyframes blinkCursor {
+            from, to { border-color: transparent; }
+            50% { border-color: #5f9ea0; }
+        }
+        
+        @keyframes floatingIcon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            33% { transform: translateY(-10px) rotate(120deg); }
+            66% { transform: translateY(5px) rotate(240deg); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Particle System */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #5f9ea0, #4a4a4a);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleFloat 8s linear infinite;
+        }
+        
+        .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: 2s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: 3s; }
+        .particle:nth-child(5) { width: 4px; height: 4px; left: 50%; animation-delay: 4s; }
+        .particle:nth-child(6) { width: 7px; height: 7px; left: 60%; animation-delay: 5s; }
+        .particle:nth-child(7) { width: 3px; height: 3px; left: 70%; animation-delay: 6s; }
+        .particle:nth-child(8) { width: 5px; height: 5px; left: 80%; animation-delay: 7s; }
+        .particle:nth-child(9) { width: 4px; height: 4px; left: 90%; animation-delay: 8s; }
+        
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #5f9ea0 0%, #4a4a4a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255,255,255,0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 30px rgba(95, 158, 160, 0.6);
+            transform: scale(1.02);
+        }
+        
+        .text-gradient-hover {
+            background-size: 200% auto;
+            transition: background-position 0.3s ease;
+        }
+        
+        .text-gradient-hover:hover {
+            background-position: right center;
+        }
+        
+        /* Scroll Reveal */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Magnetic Effect */
+        .magnetic {
+            transition: transform 0.3s ease;
+        }
+        
+        .magnetic:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5f9ea0',
+                        secondary: '#4a4a4a',
+                        accent: '#d3d3d3',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body class="bg-primary text-primary">
 
-    <header class="shadow-lg sticky top-0 z-50">
-        <!-- ...navigation and header content... -->
-    </header>
+<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="text-center">
+            <div class="loading-spinner mb-4"></div>
+            <h2 class="text-white text-2xl font-bold typewriter">Loading Portfolio...</h2>
+        </div>
+    </div>
 
-    <main class="container mx-auto px-6">
-
-        <section id="home" class="text-center py-20 md:py-32 min-h-screen flex flex-col justify-center items-center">
-            <h1 id="animated-hero-title-container" class="hero-title text-5xl md:text-7xl font-extrabold mb-5">
-                <span id="animated-text" class="text-primary dark:text-text-primary"></span>
-                <span class="typing-cursor"></span>
-            </h1>
-            <p class="hero-subtitle text-xl md:text-2xl text-secondary dark:text-text-secondary mb-10 max-w-2xl">
-                Data Analyst | MIS-Focused Professional | Transforming Raw Data into Strategic Growth.
-            </p>
-            <a href="#projects" class="hero-button btn-gradient">Explore My Work <i class="fa-solid fa-arrow-right-long ml-2"></i></a>
-        </section>
-
-        <section id="about" class="py-16 bg-secondary dark:bg-bg-secondary rounded-xl shadow-xl border border-border-color">
-            <h2 class="section-title animate-on-scroll fade-in-up">About Me</h2>
-            <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16 px-4 md:px-12">
-                <div class="md:w-1/3 flex justify-center animate-on-scroll fade-in-left" data-delay="200">
-                    <img src="IMG_9839.JPG" alt="Mohammad Mahibur Rahman" class="profile-image rounded-full w-56 h-56 md:w-72 md:h-72 object-cover">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 navbar-blur transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="hidden md:block">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-primary transition-all duration-300 elastic-bounce">Home</a>
+                        <a href="#about" class="hover:text-primary transition-all duration-300 elastic-bounce">About</a>
+                        <a href="#skills" class="hover:text-primary transition-all duration-300 elastic-bounce">Skills</a>
+                        <a href="#projects" class="hover:text-primary transition-all duration-300 elastic-bounce">Projects</a>
+                        <a href="#contact" class="hover:text-primary transition-all duration-300 elastic-bounce">Contact</a>
+                    </div>
                 </div>
-                <div class="md:w-2/3 text-center md:text-left space-y-5 text-secondary dark:text-text-secondary animate-on-scroll fade-in-right" data-delay="400">
-                    <p class="text-lg md:text-xl leading-relaxed">
-                        Hello! I'm Mohammad Mahibur Rahman, an MIS major with a strong passion for Finance, currently based in the dynamic city of Dhaka, Bangladesh. My core drive is to uncover hidden insights in data and translate them into actionable business strategies.
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 magnetic pulse-glow">
+                        <i class="fas fa-moon dark:hidden floating-icon"></i>
+                        <i class="fas fa-sun hidden dark:block floating-icon"></i>
+                    </button>
+                    
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700 magnetic">
+                        <i class="fas fa-bars floating-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 slide-in-left">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Home</a>
+                <a href="#about" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">About</a>
+                <a href="#skills" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Skills</a>
+                <a href="#projects" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Projects</a>
+                <a href="#contact" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden morphing-bg">
+        <!-- Particle System -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <!-- Floating geometric shapes -->
+        <div class="absolute inset-0 overflow-hidden opacity-20">
+            <div class="floating absolute top-20 left-10 w-16 h-16 border-2 border-white rounded-lg rotate-45" style="animation-delay: 0s;"></div>
+            <div class="floating absolute top-40 right-20 w-12 h-12 border-2 border-white rounded-full" style="animation-delay: -1s;"></div>
+            <div class="floating absolute bottom-40 left-20 w-20 h-20 border-2 border-white" style="animation-delay: -2s;"></div>
+            <div class="floating absolute bottom-20 right-10 w-14 h-14 border-2 border-white rounded-lg" style="animation-delay: -0.5s;"></div>
+            <div class="floating absolute top-1/2 left-1/4 w-8 h-8 border-2 border-white rounded-full" style="animation-delay: -3s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="scroll-reveal" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
+                    <span class="text-reveal">Mohammad Mahibur Rahman</span>
+                </h1>
+                <div class="text-2xl md:text-3xl text-white mb-8 wave-animation">
+                    <span id="typed-text" class="shimmer"></span>
+                    <span class="typing-cursor"></span>
+                </div>
+                <p class="text-lg md:text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed bounce-in">
+                    Transforming raw data into strategic insights • MIS-focused professional passionate about finance and analytics
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center scale-in">
+                    <a href="#projects" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center hover-lift pulse-glow">
+                        <i class="fas fa-rocket mr-2 floating-icon"></i> Explore My Work
+                    </a>
+                    <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 hover-glow">
+                        <i class="fas fa-envelope mr-2 wave-animation"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Animated scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 pulse-glow">
+            <div class="animate-bounce wave-animation">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="floating absolute top-10 left-10 w-32 h-32 border border-primary rounded-full" style="animation-delay: 0s;"></div>
+            <div class="floating absolute bottom-10 right-10 w-24 h-24 border border-secondary rounded-lg rotate-45" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">About Me</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
+                    Passionate about uncovering insights that drive business growth
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="relative hover-lift">
+                        <div class="gradient-border">
+                            <img src="IMG_9839.JPG" alt="Mohammad Mahibur Rahman" 
+                                 class="rounded-2xl shadow-2xl w-full max-w-md mx-auto pulse-glow">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 scale-in"></div>
+                        <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-full floating"></div>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="space-y-6">
+                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white slide-in-right">
+                            Hello! I'm Mohammad Mahibur Rahman
+                        </h3>
+                        
+                        <div class="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                            <p class="scroll-reveal">
+                                I'm an MIS major with a strong passion for Finance, currently based in the dynamic city of Dhaka, Bangladesh. 
+                                My core drive is to uncover hidden insights in data and translate them into actionable business strategies.
+                            </p>
+                            
+                            <p class="scroll-reveal">
+                                As a current Bachelor's student at Green University of Bangladesh (GUB), and holding a Diploma in International Business 
+                                from HAN University of Applied Sciences (Netherlands), I've cultivated a robust foundation in both business acumen 
+                                and advanced analytical methodologies.
+                            </p>
+                            
+                            <p class="scroll-reveal">
+                                My professional journey through data analysis and sales roles has sharpened my expertise in data management, 
+                                comprehensive market research, and persuasive communication. From wrangling messy datasets to building impactful 
+                                dashboards, I thrive at the intersection of analytics and business growth.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-4 pt-6">
+                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Data Analysis</span>
+                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">MIS</span>
+                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Finance</span>
+                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Business Strategy</span>
+                        </div>
+                        
+                        <div class="pt-6">
+                            <a href="https://drive.google.com/file/d/1lljrO-y9a1JuQP1M4p4Qti8mq8cKqsYT/view?usp=sharing" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-flex items-center hover-glow pulse-glow magnetic">
+                                <i class="fas fa-download mr-2 floating-icon"></i> Download My CV
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative overflow-hidden">
+        <!-- Animated background pattern -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="grid grid-cols-8 grid-rows-8 h-full">
+                <div class="border border-primary floating" style="animation-delay: 0s;"></div>
+                <div class="border border-secondary floating" style="animation-delay: 0.5s;"></div>
+                <div class="border border-primary floating" style="animation-delay: 1s;"></div>
+                <div class="border border-secondary floating" style="animation-delay: 1.5s;"></div>
+                <div class="border border-primary floating" style="animation-delay: 2s;"></div>
+                <div class="border border-secondary floating" style="animation-delay: 2.5s;"></div>
+                <div class="border border-primary floating" style="animation-delay: 3s;"></div>
+                <div class="border border-secondary floating" style="animation-delay: 3.5s;"></div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Skills & Expertise</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
+                    Technical skills and tools I use to bring data to life
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Data Analysis -->
+                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Data Analysis</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Excel/Google Sheets</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 95%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">SQL</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 85%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Python</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">80%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Visualization -->
+                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-chart-pie text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Visualization</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Power BI</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 90%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Tableau</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">75%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 75%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Looker Studio</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Business -->
+                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-briefcase text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4 gradient-text">Business</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Financial Analysis</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 90%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Market Research</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 95%"></div>
+                            </div>
+                            
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium">Project Management</span>
+                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                            </div>
+                            <div class="skill-bar bg-gray-200 dark:bg-gray-700">
+                                <div class="skill-fill shimmer" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <!-- Animated background -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Featured Projects</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
+                    A showcase of my data analysis and business intelligence projects
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- QuizFlow Project -->
+                <div class="project-card card-hover card-3d hover-lift rounded-2xl p-8 shadow-lg scroll-reveal" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative mb-6 overflow-hidden rounded-xl">
+                        <img src="Screenshot 2025-05-25 at 23-17-13 QuizFlow.png" 
+                             alt="QuizFlow Project" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold pulse-glow">
+                            Web App
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-4 text-white">
+                                <i class="fas fa-external-link-alt text-2xl floating-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white slide-in-left">QuizFlow</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Interactive quiz application with real-time analytics and performance tracking. 
+                        Features user engagement metrics, progress visualization, and comprehensive reporting dashboard.
                     </p>
-                    <p class="text-lg md:text-xl leading-relaxed">
-                        As a Bachelor's candidate at Green University of Bangladesh (GUB), and holding a Diploma in International Business from HAN University of Applied Sciences (Netherlands), I've cultivated a robust foundation in both business acumen and advanced analytical methodologies.
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm elastic-bounce">JavaScript</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm elastic-bounce">Analytics</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm elastic-bounce">Dashboard</span>
+                        <span class="px-3 py-1 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full text-sm elastic-bounce">Real-time</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-semibold inline-flex items-center hover-glow magnetic">
+                            <i class="fas fa-external-link-alt mr-2 wave-animation"></i> Live Demo
+                        </a>
+                        <a href="#" class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-6 py-2 rounded-full text-sm font-semibold inline-flex items-center transition-all duration-300 hover-lift">
+                            <i class="fab fa-github mr-2 floating-icon"></i> Code
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Metro Fare Calculator -->
+                <div class="project-card card-hover card-3d hover-lift rounded-2xl p-8 shadow-lg scroll-reveal" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative mb-6 overflow-hidden rounded-xl">
+                        <img src="Screenshot 2025-05-25 at 23-25-29 Dhaka Metro Fare Calculator.png" 
+                             alt="Dhaka Metro Fare Calculator" 
+                             class="w-full h-64 object-cover transition-transform duration-500 hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-semibold pulse-glow">
+                            Utility App
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
+                            <div class="p-4 text-white">
+                                <i class="fas fa-external-link-alt text-2xl floating-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white slide-in-right">Dhaka Metro Fare Calculator</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                        Smart fare calculation system for Dhaka Metro Rail with route optimization, 
+                        cost analysis, and journey planning features. Includes data insights on usage patterns.
                     </p>
-                    <p class="text-lg md:text-xl leading-relaxed">
-                        My professional journey through data analysis and sales roles has sharpened my expertise in data management, comprehensive market research, and persuasive communication. From wrangling messy datasets to building impactful dashboards, I thrive at the intersection of analytics and business growth.
-                    </p>
-                    <div class="mt-8 text-center md:text-left">
-                        <a href="https://drive.google.com/file/d/1aJFAFwH3t_EqUBJVQcqG4S0qSLdSSQFX/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-gradient">
-                            <i class="fa-solid fa-download mr-2"></i> Download My CV
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm elastic-bounce">React</span>
+                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm elastic-bounce">Data Analysis</span>
+                        <span class="px-3 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-sm elastic-bounce">Optimization</span>
+                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm elastic-bounce">Transportation</span>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="btn-primary text-white px-6 py-2 rounded-full text-sm font-semibold inline-flex items-center hover-glow magnetic">
+                            <i class="fas fa-external-link-alt mr-2 wave-animation"></i> Live Demo
+                        </a>
+                        <a href="#" class="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-6 py-2 rounded-full text-sm font-semibold inline-flex items-center transition-all duration-300 hover-lift">
+                            <i class="fab fa-github mr-2 floating-icon"></i> Code
                         </a>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <div class="text-center mt-12 scroll-reveal" data-aos="fade-up" data-aos-delay="300">
+                <a href="#" class="border border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center transition-all duration-300 hover-glow magnetic">
+                    <i class="fas fa-plus mr-2 rotate-in"></i> View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
 
-        <!-- The rest of your site (skills, projects, contact, etc.) remains unchanged. -->
-    </main>
+    <!-- Experience Section -->
+    <section id="experience" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Experience & Education</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    My journey through education and professional experiences
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Education -->
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Education</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 card-hover">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-graduation-cap text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Bachelor's in MIS</h4>
+                                    <p class="text-primary font-medium">Green University of Bangladesh (GUB)</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">2020 - Present</p>
+                                    <p class="text-gray-600 dark:text-gray-300 mt-2">
+                                        Specializing in Management Information Systems with focus on data analytics and business intelligence.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 card-hover">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-certificate text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Diploma in International Business</h4>
+                                    <p class="text-primary font-medium">HAN University of Applied Sciences</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">Netherlands</p>
+                                    <p class="text-gray-600 dark:text-gray-300 mt-2">
+                                        Comprehensive program covering global business practices, finance, and international market analysis.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Experience -->
+                <div data-aos="fade-left" data-aos-duration="1000">
+                    <h3 class="text-2xl font-bold mb-8 text-gray-900 dark:text-white">Experience</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 card-hover">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-chart-bar text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Data Analysis Specialist</h4>
+                                    <p class="text-primary font-medium">Freelance</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">2022 - Present</p>
+                                    <p class="text-gray-600 dark:text-gray-300 mt-2">
+                                        Providing data analysis services, creating interactive dashboards, and delivering actionable business insights for various clients.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 card-hover">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                    <i class="fas fa-handshake text-white"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Sales & Market Research</h4>
+                                    <p class="text-primary font-medium">Various Companies</p>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm">2021 - 2022</p>
+                                    <p class="text-gray-600 dark:text-gray-300 mt-2">
+                                        Conducted market research, analyzed customer data, and developed sales strategies based on data-driven insights.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4">Let's Connect</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                    Ready to transform your data into actionable insights? Let's discuss how we can work together.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Email</h3>
+                                <p class="text-gray-600 dark:text-gray-300">rehmanpranto@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Phone</h3>
+                                <p class="text-gray-600 dark:text-gray-300">+880 1759954385</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Location</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Dhaka, Bangladesh</p>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-8">
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-linkedin text-gray-600 dark:text-gray-300 hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-github text-gray-600 dark:text-gray-300 hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-twitter text-gray-600 dark:text-gray-300 hover:text-white"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 bg-gray-200 dark:bg-gray-700 hover:bg-primary dark:hover:bg-primary rounded-full flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-instagram text-gray-600 dark:text-gray-300 hover:text-white"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left" data-aos-duration="1000">
+                    <form class="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700">
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" name="name" required
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" name="email" required
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subject</label>
+                                <input type="text" id="subject" name="subject" required
+                                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required
+                                          class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent transition-colors duration-300"></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full btn-primary text-white px-6 py-3 rounded-lg font-semibold text-lg">
+                                <i class="fas fa-paper-plane mr-2"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-400 mb-8">Transforming data into strategic insights</p>
+                
+                <div class="flex justify-center space-x-6 mb-8">
+                    <a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a>
+                    <a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a>
+                    <a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-300">Skills</a>
+                    <a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
+                    <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+                </div>
+                
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-gray-400 text-sm">
+                        © 2024 Mohammad Mahibur Rahman. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-primary text-white rounded-full shadow-lg hover:bg-secondary transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Loading Screen Animation
+        window.addEventListener('load', () => {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.classList.add('hidden');
+                document.body.classList.add('loaded');
+                
+                // Trigger additional animations after loading
+                setTimeout(() => {
+                    initScrollReveal();
+                    initParticleSystem();
+                }, 500);
+            }, 2000);
+        });
+
+        // Enhanced Theme Toggle with Animation
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            // Add rotation animation to button
+            themeToggle.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+                themeToggle.style.transform = 'rotate(0deg)';
+            }, 300);
+            
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark'));
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('darkMode') === 'true') {
+            html.classList.add('dark');
+        }
+
+        // Enhanced Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('slide-in-left');
+            
+            // Animate hamburger icon
+            const icon = mobileMenuButton.querySelector('i');
+            icon.style.transform = 'rotate(90deg)';
+            setTimeout(() => {
+                icon.style.transform = 'rotate(0deg)';
+            }, 300);
+        });
+
+        // Enhanced Typing Effect with Multiple Phrases
+        const typedText = document.getElementById('typed-text');
+        const phrases = [
+            'Data Analyst',
+            'MIS Professional', 
+            'Business Intelligence Expert',
+            'Financial Analyst',
+            'Strategic Thinker',
+            'Dashboard Designer',
+            'Insight Generator'
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+
+        function typeEffect() {
+            const current = phrases[currentPhrase];
+            
+            if (isDeleting) {
+                typedText.textContent = current.substring(0, currentChar - 1);
+                currentChar--;
+            } else {
+                typedText.textContent = current.substring(0, currentChar + 1);
+                currentChar++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && currentChar === current.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && currentChar === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+
+        setTimeout(typeEffect, 1000);
+
+        // Smooth Scrolling with Animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Add bounce effect to clicked link
+                    this.classList.add('scale-in');
+                    setTimeout(() => {
+                        this.classList.remove('scale-in');
+                    }, 300);
+                    
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Enhanced Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            const scrollProgress = window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight);
+            
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+                backToTopButton.style.transform = `scale(${0.8 + scrollProgress * 0.4})`;
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            // Add rotation animation
+            backToTopButton.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => {
+                backToTopButton.style.transform = 'rotate(0deg) scale(1)';
+            }, 600);
+            
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced Navbar Animation
+        const navbar = document.querySelector('nav');
+        let lastScrollY = window.scrollY;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
+                navbar.classList.add('shadow-lg');
+                navbar.style.transform = currentScrollY > lastScrollY ? 'translateY(-100%)' : 'translateY(0)';
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollY = currentScrollY;
+        });
+
+        // Enhanced Form Submission with Animation
+        const contactForm = document.querySelector('form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Add loading animation to submit button
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i> Message Sent!';
+                submitBtn.classList.add('bg-green-500');
+                
+                setTimeout(() => {
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('bg-green-500');
+                }, 2000);
+            }, 2000);
+        });
+
+        // Scroll Reveal Animation
+        function initScrollReveal() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const scrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        entry.target.classList.remove('scroll-reveal');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => {
+                scrollObserver.observe(el);
+            });
+        }
+
+        // Enhanced Skill Bars Animation
+        const skillBarsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillFills = entry.target.querySelectorAll('.skill-fill');
+                    skillFills.forEach((fill, index) => {
+                        const width = fill.style.width;
+                        fill.style.width = '0%';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                            fill.classList.add('pulse-glow');
+                        }, index * 200);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('#skills .card-hover').forEach(card => {
+            skillBarsObserver.observe(card);
+        });
+
+        // Magnetic Effect for Interactive Elements
+        document.querySelectorAll('.magnetic').forEach(element => {
+            element.addEventListener('mousemove', (e) => {
+                const rect = element.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                element.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                element.style.transform = 'translate(0px, 0px) scale(1)';
+            });
+        });
+
+        // Parallax Effect for Background Elements
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax-scroll');
+            
+            parallaxElements.forEach(element => {
+                const speed = element.dataset.speed || 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Dynamic Particle System
+        function initParticleSystem() {
+            const particlesContainer = document.querySelector('.particles');
+            if (!particlesContainer) return;
+            
+            function createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 8 + 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                particlesContainer.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 12000);
+            }
+            
+            // Create particles periodically
+            setInterval(createParticle, 1000);
+        }
+
+        // Text Reveal Animation
+        function initTextReveal() {
+            const textRevealElements = document.querySelectorAll('.text-reveal');
+            textRevealElements.forEach((element, index) => {
+                setTimeout(() => {
+                    element.classList.add('revealed');
+                }, index * 200);
+            });
+        }
+
+        // Initialize text reveal after page load
+        setTimeout(initTextReveal, 1500);
+
+        // Mouse Trail Effect
+        let mouseTrail = [];
+        document.addEventListener('mousemove', (e) => {
+            mouseTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+            
+            // Limit trail length
+            mouseTrail = mouseTrail.filter(point => Date.now() - point.time < 1000);
+        });
+
+        // Keyboard Navigation Enhancement
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            if (e.key === 'Tab') {
+                // Add focus animation
+                setTimeout(() => {
+                    const focused = document.activeElement;
+                    if (focused) {
+                        focused.classList.add('pulse-glow');
+                        setTimeout(() => {
+                            focused.classList.remove('pulse-glow');
+                        }, 1000);
+                    }
+                }, 100);
+            }
+        });
+
+        // Performance Optimization: Throttle scroll events
+        function throttle(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Apply throttling to scroll events
+        window.addEventListener('scroll', throttle(() => {
+            // Scroll-based animations here
+        }, 16)); // ~60fps
+
+        console.log('🚀 Portfolio animations initialized successfully!');
+    </script>
 </body>
 </html>
