@@ -8,6 +8,48 @@
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5f9ea0',
+                        secondary: '#4a4a4a',
+                        accent: '#d3d3d3'
+                    },
+                    screens: {
+                        'xs': '475px',
+                        '3xl': '1600px',
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'bounce-in': 'bounceIn 0.6s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        bounceIn: {
+                            '0%': { transform: 'scale(0.9)', opacity: '0' },
+                            '50%': { transform: 'scale(1.05)' },
+                            '100%': { transform: 'scale(1)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -96,6 +138,147 @@
         
         .dark .navbar-blur {
             background: rgba(17, 24, 39, 0.8);
+        }
+        
+        /* Mobile-Friendly Enhancements */
+        @media (max-width: 768px) {
+            .mobile-padding {
+                padding: 1rem !important;
+            }
+            
+            .mobile-text-sm {
+                font-size: 0.875rem !important;
+            }
+            
+            .mobile-hidden {
+                display: none !important;
+            }
+            
+            .mobile-stack {
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            .hero-mobile {
+                min-height: 70vh !important;
+                padding-top: 4rem;
+            }
+            
+            .mobile-center {
+                text-align: center !important;
+            }
+            
+            /* Touch-friendly buttons */
+            .btn-mobile {
+                min-height: 48px;
+                min-width: 48px;
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            
+            /* Improved mobile navigation */
+            .mobile-nav {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 40;
+                border-top: 1px solid rgba(0,0,0,0.1);
+            }
+            
+            .dark .mobile-nav {
+                background: rgba(17, 24, 39, 0.95);
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            /* Better spacing for mobile */
+            .section-mobile {
+                padding: 3rem 0 !important;
+            }
+            
+            /* Responsive text sizing */
+            .hero-title-mobile {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            .hero-subtitle-mobile {
+                font-size: 1.25rem !important;
+            }
+            
+            /* Card improvements for mobile */
+            .card-mobile {
+                margin-bottom: 1.5rem;
+                padding: 1.5rem !important;
+            }
+            
+            /* Skills section mobile */
+            .skills-mobile {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+            }
+            
+            /* Projects mobile layout */
+            .projects-mobile {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Contact form mobile */
+            .contact-mobile {
+                padding: 1.5rem !important;
+            }
+            
+            /* Improved touch targets */
+            .touch-target {
+                min-height: 44px;
+                min-width: 44px;
+            }
+        }
+        
+        /* Tablet optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .tablet-stack {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .tablet-grid-1 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .tablet-grid-2 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+        
+        /* Smooth scrolling for mobile */
+        @media (max-width: 768px) {
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            /* Prevent horizontal scroll */
+            body {
+                overflow-x: hidden;
+            }
+            
+            /* Better mobile animations */
+            .mobile-fade-in {
+                animation: mobileSlideUp 0.6s ease-out;
+            }
+            
+            @keyframes mobileSlideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         }
         
         .project-card {
@@ -451,45 +634,53 @@
     <nav class="fixed top-0 w-full z-50 navbar-blur transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
+                <!-- Logo/Brand -->
+                <div class="flex-shrink-0">
+                    <span class="text-xl font-bold gradient-text">MR</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
                 <div class="hidden md:block">
                     <div class="flex items-baseline space-x-8">
-                        <a href="#home" class="hover:text-primary transition-all duration-300 elastic-bounce">Home</a>
-                        <a href="#about" class="hover:text-primary transition-all duration-300 elastic-bounce">About</a>
-                        <a href="#skills" class="hover:text-primary transition-all duration-300 elastic-bounce">Skills</a>
-                        <a href="#projects" class="hover:text-primary transition-all duration-300 elastic-bounce">Projects</a>
-                        <a href="#contact" class="hover:text-primary transition-all duration-300 elastic-bounce">Contact</a>
+                        <a href="#home" class="hover:text-primary transition-all duration-300 elastic-bounce touch-target">Home</a>
+                        <a href="#about" class="hover:text-primary transition-all duration-300 elastic-bounce touch-target">About</a>
+                        <a href="#skills" class="hover:text-primary transition-all duration-300 elastic-bounce touch-target">Skills</a>
+                        <a href="#projects" class="hover:text-primary transition-all duration-300 elastic-bounce touch-target">Projects</a>
+                        <a href="#contact" class="hover:text-primary transition-all duration-300 elastic-bounce touch-target">Contact</a>
                     </div>
                 </div>
                 
-                <div class="flex items-center space-x-4">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 magnetic pulse-glow">
+                <!-- Right side buttons -->
+                <div class="flex items-center space-x-2">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-all duration-300 magnetic pulse-glow touch-target">
                         <i class="fas fa-moon dark:hidden floating-icon"></i>
                         <i class="fas fa-sun hidden dark:block floating-icon"></i>
                     </button>
                     
-                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700 magnetic">
-                        <i class="fas fa-bars floating-icon"></i>
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg bg-gray-200 dark:bg-gray-700 magnetic touch-target" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars floating-icon" id="menu-icon"></i>
+                        <i class="fas fa-times floating-icon hidden" id="close-icon"></i>
                     </button>
                 </div>
             </div>
         </div>
         
         <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 slide-in-left">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Home</a>
-                <a href="#about" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">About</a>
-                <a href="#skills" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Skills</a>
-                <a href="#projects" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Projects</a>
-                <a href="#contact" class="block px-3 py-2 hover:text-primary transition-colors duration-300 elastic-bounce">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden mobile-nav slide-in-left">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Home</a>
+                <a href="#about" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">About</a>
+                <a href="#skills" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Skills</a>
+                <a href="#projects" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Projects</a>
+                <a href="#contact" class="block px-3 py-3 hover:text-primary transition-colors duration-300 elastic-bounce touch-target text-center">Contact</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden morphing-bg">
+    <section id="home" class="min-h-screen hero-mobile flex items-center justify-center relative overflow-hidden morphing-bg">
         <!-- Particle System -->
-        <div class="particles">
+        <div class="particles mobile-hidden">
             <div class="particle"></div>
             <div class="particle"></div>
             <div class="particle"></div>
@@ -501,8 +692,8 @@
             <div class="particle"></div>
         </div>
         
-        <!-- Floating geometric shapes -->
-        <div class="absolute inset-0 overflow-hidden opacity-20">
+        <!-- Floating geometric shapes - reduced for mobile -->
+        <div class="absolute inset-0 overflow-hidden opacity-20 mobile-hidden">
             <div class="floating absolute top-20 left-10 w-16 h-16 border-2 border-white rounded-lg rotate-45" style="animation-delay: 0s;"></div>
             <div class="floating absolute top-40 right-20 w-12 h-12 border-2 border-white rounded-full" style="animation-delay: -1s;"></div>
             <div class="floating absolute bottom-40 left-20 w-20 h-20 border-2 border-white" style="animation-delay: -2s;"></div>
@@ -510,24 +701,28 @@
             <div class="floating absolute top-1/2 left-1/4 w-8 h-8 border-2 border-white rounded-full" style="animation-delay: -3s;"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <div class="scroll-reveal" data-aos="fade-up" data-aos-duration="1000">
-                <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
+        <div class="max-w-7xl mx-auto mobile-padding px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="scroll-reveal mobile-fade-in" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="text-4xl hero-title-mobile sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight text-white">
                     <span class="text-reveal">Mohammad Mahibur Rahman</span>
                 </h1>
-                <div class="text-2xl md:text-3xl text-white mb-8 wave-animation">
+                <div class="text-xl hero-subtitle-mobile sm:text-2xl md:text-3xl text-white mb-8 wave-animation">
                     <span id="typed-text" class="shimmer"></span>
                     <span class="typing-cursor"></span>
                 </div>
-                <p class="text-lg md:text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed bounce-in">
+                <p class="text-base sm:text-lg md:text-xl text-white mb-12 max-w-3xl mx-auto leading-relaxed bounce-in px-4">
                     Transforming raw data into strategic insights • MIS-focused professional passionate about finance and analytics
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center scale-in">
-                    <a href="#projects" class="btn-primary text-white px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center hover-lift pulse-glow">
-                        <i class="fas fa-rocket mr-2 floating-icon"></i> Explore My Work
+                <div class="flex flex-col mobile-stack sm:flex-row gap-4 justify-center scale-in px-4">
+                    <a href="#projects" class="btn-primary btn-mobile text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg inline-flex items-center justify-center hover-lift pulse-glow touch-target">
+                        <i class="fas fa-rocket mr-2 floating-icon"></i> 
+                        <span class="hidden sm:inline">Explore My Work</span>
+                        <span class="sm:hidden">My Work</span>
                     </a>
-                    <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-full font-semibold text-lg inline-flex items-center justify-center transition-all duration-300 hover-glow">
-                        <i class="fas fa-envelope mr-2 wave-animation"></i> Get In Touch
+                    <a href="#contact" class="border-2 border-white text-white hover:bg-white hover:text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg inline-flex items-center justify-center transition-all duration-300 hover-glow touch-target">
+                        <i class="fas fa-envelope mr-2 wave-animation"></i> 
+                        <span class="hidden sm:inline">Get In Touch</span>
+                        <span class="sm:hidden">Contact</span>
                     </a>
                 </div>
             </div>
@@ -542,40 +737,40 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
-        <!-- Animated background elements -->
-        <div class="absolute inset-0 opacity-5">
+    <section id="about" class="py-12 section-mobile sm:py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden">
+        <!-- Animated background elements - hidden on mobile -->
+        <div class="absolute inset-0 opacity-5 mobile-hidden">
             <div class="floating absolute top-10 left-10 w-32 h-32 border border-primary rounded-full" style="animation-delay: 0s;"></div>
             <div class="floating absolute bottom-10 right-10 w-24 h-24 border border-secondary rounded-lg rotate-45" style="animation-delay: -2s;"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">About Me</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
+        <div class="max-w-7xl mx-auto mobile-padding px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 sm:mb-16 scroll-reveal" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">About Me</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in px-4">
                     Passionate about uncovering insights that drive business growth
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="scroll-reveal" data-aos="fade-right" data-aos-duration="1000">
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <div class="scroll-reveal mobile-center" data-aos="fade-right" data-aos-duration="1000">
                     <div class="relative hover-lift">
                         <div class="gradient-border">
                             <img src="IMG_9839.JPG" alt="Mohammad Mahibur Rahman" 
-                                 class="rounded-2xl shadow-2xl w-full max-w-md mx-auto pulse-glow">
+                                 class="rounded-2xl shadow-2xl w-full max-w-sm sm:max-w-md mx-auto pulse-glow">
                         </div>
-                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 scale-in"></div>
-                        <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-full floating"></div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-r from-primary to-secondary rounded-full opacity-20 scale-in mobile-hidden"></div>
+                        <div class="absolute -top-4 -left-4 w-8 h-8 bg-primary rounded-full floating mobile-hidden"></div>
                     </div>
                 </div>
                 
-                <div class="scroll-reveal" data-aos="fade-left" data-aos-duration="1000">
-                    <div class="space-y-6">
-                        <h3 class="text-3xl font-bold text-gray-900 dark:text-white slide-in-right">
+                <div class="scroll-reveal mobile-center" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="space-y-4 sm:space-y-6">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white slide-in-right">
                             Hello! I'm Mohammad Mahibur Rahman
                         </h3>
                         
-                        <div class="space-y-4 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                        <div class="space-y-3 sm:space-y-4 text-gray-600 dark:text-gray-300 text-base sm:text-lg leading-relaxed">
                             <p class="scroll-reveal">
                                 I'm an MIS major with a strong passion for Finance, currently based in the dynamic city of Dhaka, Bangladesh. 
                                 My core drive is to uncover hidden insights in data and translate them into actionable business strategies.
@@ -594,18 +789,20 @@
                             </p>
                         </div>
                         
-                        <div class="flex flex-wrap gap-4 pt-6">
-                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Data Analysis</span>
-                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">MIS</span>
-                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Finance</span>
-                            <span class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold hover-lift elastic-bounce">Business Strategy</span>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2 sm:gap-4 pt-4 sm:pt-6">
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Data Analysis</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">MIS</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Finance</span>
+                            <span class="px-3 sm:px-4 py-2 bg-primary/10 text-primary rounded-full text-xs sm:text-sm font-semibold hover-lift elastic-bounce">Business Strategy</span>
                         </div>
                         
-                        <div class="pt-6">
+                        <div class="pt-4 sm:pt-6 mobile-center">
                             <a href="https://drive.google.com/file/d/1lljrO-y9a1JuQP1M4p4Qti8mq8cKqsYT/view?usp=sharing" 
                                target="_blank" rel="noopener noreferrer" 
-                               class="btn-primary text-white px-6 py-3 rounded-full font-semibold inline-flex items-center hover-glow pulse-glow magnetic">
-                                <i class="fas fa-download mr-2 floating-icon"></i> Download My CV
+                               class="btn-primary btn-mobile text-white px-4 sm:px-6 py-3 rounded-full font-semibold inline-flex items-center hover-glow pulse-glow magnetic touch-target">
+                                <i class="fas fa-download mr-2 floating-icon"></i> 
+                                <span class="hidden sm:inline">Download My CV</span>
+                                <span class="sm:hidden">My CV</span>
                             </a>
                         </div>
                     </div>
@@ -615,9 +812,9 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 relative overflow-hidden">
-        <!-- Animated background pattern -->
-        <div class="absolute inset-0 opacity-5">
+    <section id="skills" class="py-12 section-mobile sm:py-20 relative overflow-hidden">
+        <!-- Animated background pattern - simplified for mobile -->
+        <div class="absolute inset-0 opacity-5 mobile-hidden">
             <div class="grid grid-cols-8 grid-rows-8 h-full">
                 <div class="border border-primary floating" style="animation-delay: 0s;"></div>
                 <div class="border border-secondary floating" style="animation-delay: 0.5s;"></div>
@@ -630,42 +827,42 @@
             </div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 scroll-reveal" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Skills & Expertise</h2>
-                <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in">
+        <div class="max-w-7xl mx-auto mobile-padding px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 sm:mb-16 scroll-reveal" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 text-reveal">Skills & Expertise</h2>
+                <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto bounce-in px-4">
                     Technical skills and tools I use to bring data to life
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid skills-mobile md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Data Analysis -->
-                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-hover card-3d card-mobile hover-lift bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
-                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-chart-line text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 gradient-text">Data Analysis</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Data Analysis</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Excel/Google Sheets</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
+                                <span class="text-xs sm:text-sm font-medium">Excel/Google Sheets</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 95%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">SQL</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                                <span class="text-xs sm:text-sm font-medium">SQL</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 85%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Python</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">80%</span>
+                                <span class="text-xs sm:text-sm font-medium">Python</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">80%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 80%"></div>
@@ -675,32 +872,32 @@
                 </div>
                 
                 <!-- Visualization -->
-                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-hover card-3d card-mobile hover-lift bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
-                            <i class="fas fa-chart-pie text-white text-2xl"></i>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-chart-pie text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 gradient-text">Visualization</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Visualization</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Power BI</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
+                                <span class="text-xs sm:text-sm font-medium">Power BI</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 90%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Tableau</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">75%</span>
+                                <span class="text-xs sm:text-sm font-medium">Tableau</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">75%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 75%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Looker Studio</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                                <span class="text-xs sm:text-sm font-medium">Looker Studio</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 85%"></div>
@@ -710,32 +907,32 @@
                 </div>
                 
                 <!-- Business -->
-                <div class="card-hover card-3d hover-lift bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-hover card-3d card-mobile hover-lift bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 scroll-reveal lg:col-span-1 md:col-span-2 lg:col-span-1" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-center">
-                        <div class="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
-                            <i class="fas fa-briefcase text-white text-2xl"></i>
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-4 pulse-glow floating-icon">
+                            <i class="fas fa-briefcase text-white text-xl sm:text-2xl"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-4 gradient-text">Business</h3>
+                        <h3 class="text-lg sm:text-xl font-bold mb-4 gradient-text">Business</h3>
                         <div class="space-y-3">
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Financial Analysis</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
+                                <span class="text-xs sm:text-sm font-medium">Financial Analysis</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">90%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 90%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Market Research</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
+                                <span class="text-xs sm:text-sm font-medium">Market Research</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">95%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 95%"></div>
                             </div>
                             
                             <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium">Project Management</span>
-                                <span class="text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
+                                <span class="text-xs sm:text-sm font-medium">Project Management</span>
+                                <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bounce-in">85%</span>
                             </div>
                             <div class="skill-bar bg-gray-200 dark:bg-gray-700">
                                 <div class="skill-fill shimmer" style="width: 85%"></div>
@@ -1116,17 +1313,54 @@
         // Enhanced Mobile Menu Toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
 
         mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('slide-in-left');
+            const isOpen = !mobileMenu.classList.contains('hidden');
+            
+            if (isOpen) {
+                // Close menu
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            } else {
+                // Open menu
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('slide-in-left');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scroll
+            }
             
             // Animate hamburger icon
-            const icon = mobileMenuButton.querySelector('i');
-            icon.style.transform = 'rotate(90deg)';
+            mobileMenuButton.style.transform = 'rotate(90deg)';
             setTimeout(() => {
-                icon.style.transform = 'rotate(0deg)';
+                mobileMenuButton.style.transform = 'rotate(0deg)';
             }, 300);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+            }
         });
 
         // Enhanced Typing Effect with Multiple Phrases
@@ -1420,6 +1654,106 @@
         }, 16)); // ~60fps
 
         console.log('🚀 Portfolio animations initialized successfully!');
+
+        // Mobile-specific enhancements
+        function initMobileEnhancements() {
+            // Touch support detection
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (isTouchDevice) {
+                document.body.classList.add('touch-device');
+                
+                // Improve touch interactions for cards
+                document.querySelectorAll('.card-hover').forEach(card => {
+                    card.addEventListener('touchstart', function() {
+                        this.style.transform = 'translateY(-5px)';
+                    });
+                    
+                    card.addEventListener('touchend', function() {
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    });
+                });
+                
+                // Disable hover effects on touch devices
+                const hoverElements = document.querySelectorAll('.hover-lift');
+                hoverElements.forEach(element => {
+                    element.classList.add('touch-no-hover');
+                });
+            }
+            
+            // Optimize animations for mobile
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                // Reduce animation complexity
+                document.querySelectorAll('.particle').forEach(particle => {
+                    particle.style.display = 'none';
+                });
+                
+                // Simpler animations for mobile
+                AOS.init({
+                    duration: 600,
+                    once: true,
+                    offset: 50,
+                    disable: 'mobile' // Disable on very small screens
+                });
+            }
+        }
+
+        // Handle orientation changes
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                window.scrollTo(0, window.scrollY + 1);
+                window.scrollTo(0, window.scrollY - 1);
+            }, 500);
+        });
+
+        // Improve mobile scrolling performance
+        let ticking = false;
+        function updateOnScroll() {
+            // Throttled scroll handler for mobile
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    // Your scroll-based animations here
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Better mobile viewport handling
+        function setMobileViewport() {
+            const viewport = document.querySelector('meta[name=viewport]');
+            if (window.innerWidth <= 768) {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            } else {
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            }
+        }
+
+        // Initialize mobile enhancements
+        initMobileEnhancements();
+        setMobileViewport();
+
+        // Handle resize events
+        window.addEventListener('resize', () => {
+            setMobileViewport();
+            initMobileEnhancements();
+        });
+
+        // Prevent zoom on input focus (iOS Safari)
+        document.querySelectorAll('input, textarea, select').forEach(element => {
+            element.addEventListener('focus', () => {
+                const viewport = document.querySelector('meta[name=viewport]');
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+            });
+            
+            element.addEventListener('blur', () => {
+                const viewport = document.querySelector('meta[name=viewport]');
+                viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
+            });
+        });
     </script>
 </body>
 </html>
